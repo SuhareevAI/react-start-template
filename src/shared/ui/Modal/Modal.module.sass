@@ -1,0 +1,38 @@
+﻿@import "src/app/styles/base"
+
+.modal 
+  border:  1px solid $border-color
+  display: flex
+  justify-content: flex-start
+  flex-direction: column
+  border-radius: 0.3em
+  max-width: 500px
+  box-shadow: 0 15px 30px 0 rgba(#000, 0.25)  
+
+.modal__header 
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  padding: 16px
+  border-bottom: 1px solid $border-color
+
+.modal__title 
+  line-height: 1.5  
+
+.modal__close 
+  padding: 5px
+  font-size: 20px
+  display: flex
+  border: 0
+  background-color: transparent
+  cursor: pointer
+  float: right
+
+.modal__body
+  position: relative
+  -webkit-box-flex: 1
+  -ms-flex: 1 1 auto
+  flex: 1 1 auto
+  padding: 1rem
+  
+  
