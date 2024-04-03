@@ -1,5 +1,5 @@
 ﻿import type { Meta } from '@storybook/react';
-import { Modal } from './Modal';
+import { Modal, ModalProps } from './Modal';
 
 const meta: Meta<typeof Modal> = {
   title: 'Base/Modal',
@@ -22,7 +22,7 @@ const meta: Meta<typeof Modal> = {
 
 export default meta;
 
-export const Primary = {
+export const Primary: { args: ModalProps } = {
   args: {
     header: 'Lorem Ipsum',
     children:

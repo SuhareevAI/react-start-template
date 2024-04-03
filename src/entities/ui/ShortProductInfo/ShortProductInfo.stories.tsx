@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { ShortProductInfo } from './ShortProductInfo';
+import { ShortProductInfo, ShortProductInfoProps } from './ShortProductInfo';
 
 const meta: Meta<typeof ShortProductInfo> = {
   title: 'Entities/ShortProductInfo',
@@ -27,7 +27,7 @@ const meta: Meta<typeof ShortProductInfo> = {
 
 export default meta;
 
-export const Primary = {
+export const Primary: { args: ShortProductInfoProps } = {
   args: {
     cost: 1140,
     image: 'https://www.podpisnie.ru/upload/resize_cache/iblock/ec5/1263_576_1/l53d55o3h11s8wp9gqti6w2417cmh187.jpg',

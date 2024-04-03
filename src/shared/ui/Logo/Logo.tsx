@@ -8,7 +8,7 @@ interface LogoProps {
   height: number;
 }
 
-export const Logo: FC<LogoProps> = ({ text, width = 24, height = 24 }) => {
+const Logo: FC<LogoProps> = ({ text, width = 24, height = 24 }) => {
   return (
     <div className={s.logo}>
       <a className={s.logo__brand} href="#">
@@ -18,3 +18,5 @@ export const Logo: FC<LogoProps> = ({ text, width = 24, height = 24 }) => {
     </div>
   );
 };
+
+export { Logo, LogoProps };

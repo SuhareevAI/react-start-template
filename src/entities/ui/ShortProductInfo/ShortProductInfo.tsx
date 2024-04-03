@@ -9,7 +9,7 @@ interface ShortProductInfoProps {
   description: string;
 }
 
-export const ShortProductInfo: FC<ShortProductInfoProps> = ({ cost, image, title, description }) => {
+const ShortProductInfo: FC<ShortProductInfoProps> = ({ cost, image, title, description }) => {
   const maxLength = 100;
 
   return (
@@ -29,3 +29,5 @@ export const ShortProductInfo: FC<ShortProductInfoProps> = ({ cost, image, title
     </div>
   );
 };
+
+export { ShortProductInfo, ShortProductInfoProps };

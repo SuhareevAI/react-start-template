@@ -7,7 +7,7 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-export const Modal: FC<ModalProps> = ({ visible, header, children }) => {
+const Modal: FC<ModalProps> = ({ visible, header, children }) => {
   return (
     <div className={s.modal} style={{ display: !visible ? 'none' : 'block' }}>
       <div className={s.modal__header}>
@@ -22,3 +22,5 @@ export const Modal: FC<ModalProps> = ({ visible, header, children }) => {
     </div>
   );
 };
+
+export { Modal, ModalProps };

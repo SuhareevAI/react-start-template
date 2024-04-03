@@ -10,7 +10,7 @@ interface FullProductInfoProps {
   description: string;
 }
 
-export const FullProductInfo: FC<FullProductInfoProps> = ({ cost, images, categoryName, title, description }) => {
+const FullProductInfo: FC<FullProductInfoProps> = ({ cost, images, categoryName, title, description }) => {
   return (
     <div className={s.fullProduct}>
       <div className={s.fullProduct__images}>
@@ -30,3 +30,5 @@ export const FullProductInfo: FC<FullProductInfoProps> = ({ cost, images, catego
     </div>
   );
 };
+
+export { FullProductInfo, FullProductInfoProps };

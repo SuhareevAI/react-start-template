@@ -1,5 +1,5 @@
 ﻿import type { Meta } from '@storybook/react';
-import { Logo } from './Logo';
+import { Logo, LogoProps } from './Logo';
 
 const meta: Meta<typeof Logo> = {
   title: 'Base/Logo',
@@ -23,7 +23,7 @@ const meta: Meta<typeof Logo> = {
 
 export default meta;
 
-export const Primary = {
+export const Primary: { args: LogoProps } = {
   args: {
     text: 'Company name',
     width: 35,

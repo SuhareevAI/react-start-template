@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { FullProductInfo } from './FullProductInfo';
+import { FullProductInfo, FullProductInfoProps } from './FullProductInfo';
 
 const meta: Meta<typeof FullProductInfo> = {
   title: 'Entities/FullProductInfo',
@@ -30,7 +30,7 @@ const meta: Meta<typeof FullProductInfo> = {
 
 export default meta;
 
-export const Primary = {
+export const Primary: { args: FullProductInfoProps } = {
   args: {
     cost: 1140,
     images: [

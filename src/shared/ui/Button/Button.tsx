@@ -7,10 +7,6 @@ interface ButtonProps {
   style: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
 }
 
-export const Button: FC<ButtonProps> = ({ children, size = 'small', style = 'secondary', ...props }) => {
-  return (
-    <button className={[s.button, s[size], s[style]].join(' ')} {...props}>
-      {children}
-    </button>
-  );
+export const Button: FC<ButtonProps> = ({ children, size = 'small', style = 'secondary' }) => {
+  return <button className={[s.button, s[size], s[style]].join(' ')}>{children}</button>;
 };
