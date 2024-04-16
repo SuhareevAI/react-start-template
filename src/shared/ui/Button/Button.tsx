@@ -1,12 +1,14 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, useContext } from 'react';
 import s from '../../../shared/ui/Button/Button.module.sass';
+import ThemeContext from '../../../app/lib/ThemeContext';
+import { ButtonProps } from '../../types/ButtonTypes';
 
-interface ButtonProps {
-  children: ReactNode;
-  size: 'small' | 'medium' | 'large';
-  style: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
-}
+export const Button: FC<ButtonProps> = ({ children, size = 'small', style = 'secondary', onClick }) => {
+  const { theme } = useContext(ThemeContext);
 
-export const Button: FC<ButtonProps> = ({ children, size = 'small', style = 'secondary' }) => {
-  return <button className={[s.button, s[size], s[style]].join(' ')}>{children}</button>;
+  return (
+    <button className={[s.button, s[size], s[style], s[theme]].join(' ')} onClick={onClick}>
+      {children}
+    </button>
+  );
 };

@@ -13,14 +13,26 @@
   margin: 0 2px
   
   &.primary
-    color: #fff
-    background-color: #007bff
-    border-color: #007bff
+    &.light
+      color: #ffffff
+      background-color: #007bff
+      border-color: #007bff
+    
+    &.dark
+      color: #ffffff
+      background-color: #083767
+      border-color: #062D56FF
 
   &.secondary
-    color: #fff
-    background-color: #6c757d
-    border-color: #6c757d
+    &.light
+      color: $main-text-color
+      background-color: $base-color 
+      border-color: $base-color
+
+    &.dark
+      color: #ffffff
+      background-color: #000000
+      border-color: #000000
 
   &.success 
     color: #fff

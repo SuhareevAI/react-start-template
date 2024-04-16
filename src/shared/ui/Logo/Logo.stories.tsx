@@ -2,7 +2,7 @@
 import { Logo, LogoProps } from './Logo';
 
 const meta: Meta<typeof Logo> = {
-  title: 'Base/Logo',
+  title: 'shared/Logo',
   component: Logo,
   tags: ['autodocs'],
   argTypes: {

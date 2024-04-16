@@ -1,20 +1,22 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import s from './CartButton.module.sass';
-
-interface CartButtonProps {
-  count?: number;
-}
+import { useTranslation } from 'react-i18next';
+import ThemeContext from '../../../app/lib/ThemeContext';
+import { CartButtonProps } from '../../types/CartButtonTypes';
 
 export const CartButton: FC<CartButtonProps> = ({ count = 0 }) => {
+  const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
+
   if (count > 0) {
     return (
-      <div className={`${s.cartButton} ${s.cartButton_added}`}>
-        <button className={s.cartButton__button}>-</button>
+      <div className={[s.cartButton, s.cartButton_added, s[theme]].join(' ')}>
+        <button className={[s.cartButton__button, s[theme]].join(' ')}>-</button>
         <input className={s.cartButton__count} type="text" value={count} />
-        <button className={s.cartButton__button}>+</button>
+        <button className={[s.cartButton__button, s[theme]].join(' ')}>+</button>
       </div>
     );
   }
 
-  return <button className={`${s.cartButton} ${s.cartButton_notAdded}`}>В корзину</button>;
+  return <button className={[s.cartButton, s.cartButton_notAdded, s[theme]].join(' ')}>{t('CartButton.title')}</button>;
 };

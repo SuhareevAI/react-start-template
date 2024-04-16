@@ -2,7 +2,7 @@ import type { Meta } from '@storybook/react';
 import { CartButton } from './CartButton';
 
 const meta: Meta<typeof CartButton> = {
-  title: 'Base/CartButton',
+  title: 'shared/CartButton',
   component: CartButton,
   tags: ['autodocs'],
   argTypes: {

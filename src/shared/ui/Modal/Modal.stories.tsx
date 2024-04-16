@@ -2,7 +2,7 @@
 import { Modal, ModalProps } from './Modal';
 
 const meta: Meta<typeof Modal> = {
-  title: 'Base/Modal',
+  title: 'shared/Modal',
   component: Modal,
   tags: ['autodocs'],
   argTypes: {
@@ -17,6 +17,9 @@ const meta: Meta<typeof Modal> = {
       type: 'boolean',
       description: 'Видимость модального окна',
     },
+    onClose: {
+      description: 'Функция закрытия модального окна',
+    },
   },
 };
 
@@ -30,5 +33,6 @@ export const Primary: { args: ModalProps } = {
       "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown " +
       'printer took a galley of type and scrambled it to make a type specimen book.',
     visible: true,
+    onClose: () => undefined,
   },
 };

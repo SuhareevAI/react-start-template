@@ -2,7 +2,7 @@
 import { Layout } from './Layout';
 
 const meta: Meta<typeof Layout> = {
-  title: 'Base/Layout',
+  title: 'shared/Layout',
   component: Layout,
   tags: ['autodocs'],
   argTypes: {},
