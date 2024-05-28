@@ -3,4 +3,5 @@ export interface ShortProductInfoProps {
   image: string;
   title: string;
   description: string;
+  style?: string;
 }

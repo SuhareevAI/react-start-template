@@ -1,5 +1,6 @@
 import type { Meta } from '@storybook/react';
-import { ShortProductInfo, ShortProductInfoProps } from './ShortProductInfo';
+import { ShortProductInfo } from './ShortProductInfo';
+import { ShortProductInfoProps } from '../types/ShortProductInfoTypes';
 
 const meta: Meta<typeof ShortProductInfo> = {
   title: 'features/ShortProductInfo',

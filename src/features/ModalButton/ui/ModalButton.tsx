@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Button } from '../../../shared/ui/Button/Button';
 import { Modal } from '../../../shared/ui/Modal/Modal';
-import { createPortal } from 'react-dom';
 import s from './ModalButton.module.sass';
 export const ModalButton: FC = () => {
   const [text, setText] = useState('');
@@ -22,13 +21,11 @@ export const ModalButton: FC = () => {
         Open modal
       </Button>
 
-      {showModal &&
-        createPortal(
-          <Modal header={''} visible={showModal} onClose={closeModal}>
-            {text}
-          </Modal>,
-          document.body
-        )}
+      {showModal && (
+        <Modal header={''} visible={showModal} onClose={closeModal}>
+          {text}
+        </Modal>
+      )}
     </div>
   );
 };

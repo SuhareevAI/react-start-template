@@ -1,5 +1,9 @@
 {
   "CartButton" : {
     "title": "В корзину"
+  },
+  "ProductList" : {
+    "showMoreButtonText" : "Показать еще"
   }
+
 }

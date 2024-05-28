@@ -1,9 +1,9 @@
 ﻿import type { Meta } from '@storybook/react';
-import { Modal, ModalProps } from './Modal';
+import { ModalBase, ModalBaseProps } from './ModalBase';
 
-const meta: Meta<typeof Modal> = {
+const meta: Meta<typeof ModalBase> = {
   title: 'shared/Modal',
-  component: Modal,
+  component: ModalBase,
   tags: ['autodocs'],
   argTypes: {
     header: {
@@ -25,7 +25,7 @@ const meta: Meta<typeof Modal> = {
 
 export default meta;
 
-export const Primary: { args: ModalProps } = {
+export const Primary: { args: ModalBaseProps } = {
   args: {
     header: 'Lorem Ipsum',
     children:

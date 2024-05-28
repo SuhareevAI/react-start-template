@@ -1,4 +1,5 @@
-import { createRandomOperation, createRandomProduct } from './3_write';
+import { createRandomOperation } from './3_write';
+import { createRandomProduct } from '../../../src/entities/Product/Services/ProductService';
 
 describe('all', () => {
   it('operation', () => {
