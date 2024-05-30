@@ -1,0 +1,40 @@
+@import "src/app/styles/base"
+    
+.RangeSlider
+    width: 100%
+    height: 15px
+    border-radius: 5px  
+
+    &.light
+      background-color: $base-color
+      border-color: $border-color
+    
+    &.dark
+        background-color: $main-text-color
+        border-color: $main-text-color
+
+    &.small
+      box-shadow: 1px 5px 10px 0px  #007bff6d
+    
+.RangeSlider__runner
+    border-radius: 50%
+    background: $base-color
+    cursor: pointer
+    width: 20px
+    height: 20px
+    transform: translate(-50%, -50%)
+    top: 50%
+    position: relative
+
+    &.light
+      background-color: #007bff
+      border-color: #007bff
+    
+    &.dark
+      background-color: #083767
+      border-color: #062D56FF
+
+.RangeSlider__input
+    margin-top: 10px
+    border: 1px solid transparent
+    border-color: $base-color
