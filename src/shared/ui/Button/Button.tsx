@@ -3,11 +3,18 @@ import s from '../../../shared/ui/Button/Button.module.sass';
 import ThemeContext from '../../../app/lib/ThemeContext';
 import { ButtonProps } from '../../types/ButtonTypes';
 
-export const Button: FC<ButtonProps> = ({ children, size = 'small', style = 'secondary', className, onClick }) => {
+export const Button: FC<ButtonProps> = ({
+  children,
+  size = 'small',
+  style = 'secondary',
+  className,
+  onClick,
+  type,
+}) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <button className={[s.button, s[size], s[style], s[theme], className].join(' ')} onClick={onClick}>
+    <button type={type} className={[s.button, s[size], s[style], s[theme], className].join(' ')} onClick={onClick}>
       {children}
     </button>
   );

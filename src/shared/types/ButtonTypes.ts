@@ -9,4 +9,5 @@ export interface ButtonProps {
   style: ButtonStyle;
   className?: string;
   onClick?: () => void;
+  type?: 'submit' | 'reset' | 'button' | undefined;
 }
