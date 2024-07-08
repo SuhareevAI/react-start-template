@@ -15,8 +15,10 @@ export type FormItemProps = {
 
 export const FormItem = memo<FormItemProps>(({ validateStatus, required, help, className, title, children }) => (
   <div>
-    <Form.Item validateStatus={validateStatus} help={help}>
+    <Form.Item validateStatus={validateStatus} help={help} className={className} required={required} tooltip={title}>
       {children}
     </Form.Item>
   </div>
 ));
+
+FormItem.displayName = 'FormItem';

@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Input } from 'antd';
 import { FormItem } from '../FormItem/FormItem';
 import { getValidates } from '../../../utils/validation';
-import { FormFieldProps } from 'src/shared/types/FormFieldTypes';
+import { FormFieldProps } from '../../types/FormFieldTypes';
 
 export const TextFormField = memo<FormFieldProps>(
   ({ onChange, onBlur, touched, value, errors, disabled, submitCount, name, placeholder, title }) => {

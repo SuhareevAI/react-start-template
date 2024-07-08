@@ -8,7 +8,7 @@ export const ShortProductInfo: FC<ShortProductInfoProps> = ({ cost, image, title
 
   return (
     <div className={[s.product, style].join(' ')}>
-      <img className={s.product__image} src={image} alt={title}></img>
+      <img className={s.product__image} src={image} alt={title} />
       <div className={s.product__info}>
         <span className={s.product__title}>{title}</span>
         <span className={s.product__description}>

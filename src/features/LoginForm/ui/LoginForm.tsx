@@ -33,7 +33,7 @@ export const LoginForm = memo(() => {
       console.log('values: ', values);
       actions.resetForm();
     },
-    validate: validate,
+    validate,
   });
 
   const { handleSubmit, values, touched, errors, submitCount, handleBlur, handleChange } = formManager;
@@ -64,7 +64,7 @@ export const LoginForm = memo(() => {
         title={t(`Forms.LoginForm.Password.title`)}
       />
 
-      <Button type="submit" style={'primary'} size="small" onClick={handleSubmit}>
+      <Button type="submit" style="primary" size="small" onClick={handleSubmit}>
         {t(`Forms.LoginForm.Button.title`)}
       </Button>
     </form>

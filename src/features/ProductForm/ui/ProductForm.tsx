@@ -2,8 +2,8 @@ import { useFormik } from 'formik';
 import React, { ChangeEvent, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../../shared/ui/Button/Button';
-import { NumberFormField } from '../../..//shared/ui/FormField/NumberFormField';
-import { TextFormField } from '../../..//shared/ui/FormField/TextFormField';
+import { NumberFormField } from '../../../shared/ui/FormField/NumberFormField';
+import { TextFormField } from '../../../shared/ui/FormField/TextFormField';
 import { isNotDefinedString } from '../../../utils/validation';
 import { ProductFormErrors, ProductFormValues } from '../types/ProductFormTypes';
 import { TextAreaFormField } from '../../../shared/ui/FormField/TextAreaFormField';
@@ -43,7 +43,7 @@ export const ProductForm: FC = () => {
       console.log(values);
       actions.resetForm();
     },
-    validate: validate,
+    validate,
   });
 
   const { handleSubmit, values, touched, errors, submitCount, handleBlur, handleChange } = formManager;
@@ -126,14 +126,13 @@ export const ProductForm: FC = () => {
         submitCount={submitCount}
         errors={errors.category}
         touched={touched.category}
-        name="category"
         value={values.category}
         placeholder={t(`Forms.ProductForm.Category.title`)}
         title={t(`Forms.ProductForm.Category.placeholder`)}
         options={options}
       />
 
-      <Button type="submit" style={'primary'} size="small" onClick={handleSubmit}>
+      <Button type="submit" style="primary" size="small" onClick={handleSubmit}>
         {t(`Forms.ProductForm.Button.title`)}
       </Button>
     </form>

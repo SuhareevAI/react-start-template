@@ -10,7 +10,7 @@ const Logo: FC<LogoProps> = ({ text, width = 24, height = 24 }) => {
   return (
     <div className={s.logo}>
       <a className={[s.logo__brand, s[theme]].join(' ')} href="#">
-        <img src={logo} alt="" width={width + 'px'} height={height + 'px'} />
+        <img src={logo} alt="" width={`${width}px`} height={`${height}px`} />
         {text}
       </a>
     </div>

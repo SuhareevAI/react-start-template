@@ -8,8 +8,8 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <div>
       <Header>
-        <ThemeSwitcher width={25} height={25}></ThemeSwitcher>
-        <LangSwitcher></LangSwitcher>
+        <ThemeSwitcher width={25} height={25} />
+        <LangSwitcher />
       </Header>
       <div>{children}</div>
     </div>

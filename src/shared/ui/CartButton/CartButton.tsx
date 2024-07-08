@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
-import s from './CartButton.module.sass';
 import { useTranslation } from 'react-i18next';
+import s from './CartButton.module.sass';
 import ThemeContext from '../../../app/lib/ThemeContext';
 import { CartButtonProps } from '../../types/CartButtonTypes';
 

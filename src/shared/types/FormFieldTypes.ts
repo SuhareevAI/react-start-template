@@ -1,6 +1,15 @@
-import { FormikHandlers } from 'formik';
-import { FormProps } from './FormTypes';
+import { FormikContextType, FormikHandlers } from 'formik';
 import { valueType } from 'antd/es/statistic/utils';
+import { MutableRefObject } from 'react';
+import { InputRef } from 'antd';
+
+export interface FormProps<Values = unknown> {
+  className?: string;
+  disabled?: boolean;
+  formManager: FormikContextType<Values>;
+  formElement?: MutableRefObject<HTMLFormElement>;
+  autoFocusElement?: MutableRefObject<InputRef>;
+}
 
 export type FormFieldProps = Pick<FormProps, 'disabled' | 'autoFocusElement'> & {
   submitCount: number;

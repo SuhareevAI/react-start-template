@@ -33,7 +33,7 @@ export const ChangePasswordForm: FC = memo(() => {
       console.log('values: ', values);
       actions.resetForm();
     },
-    validate: validate,
+    validate,
   });
 
   const { handleSubmit, values, touched, errors, submitCount, handleBlur, handleChange } = formManager;
@@ -76,7 +76,7 @@ export const ChangePasswordForm: FC = memo(() => {
         placeholder={t(`Forms.ChangePasswordForm.RepeatPassword.placeholder`)}
         title={t(`Forms.ChangePasswordForm.RepeatPassword.title`)}
       />
-      <Button type="submit" style={'primary'} size="small" onClick={handleSubmit}>
+      <Button type="submit" style="primary" size="small" onClick={handleSubmit}>
         {t(`Forms.ChangePasswordForm.Button.title`)}
       </Button>
     </>

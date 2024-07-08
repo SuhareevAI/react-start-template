@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Meta } from '@storybook/react';
 import { ProductList } from './ProductList';
 import { ProductListProps } from '../types/ProductList';

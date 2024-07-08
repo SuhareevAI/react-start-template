@@ -14,10 +14,8 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ width, height }) => {
   };
   return (
     <>
-      {theme == 'light' && <WiDaySunny style={{ width: width, height: height }} onClick={() => changeTheme()} />}
-      {theme == 'dark' && (
-        <WiMoonAltWaningCrescent4 style={{ width: width, height: height }} onClick={() => changeTheme()} />
-      )}
+      {theme == 'light' && <WiDaySunny style={{ width, height }} onClick={() => changeTheme()} />}
+      {theme == 'dark' && <WiMoonAltWaningCrescent4 style={{ width, height }} onClick={() => changeTheme()} />}
     </>
   );
 };

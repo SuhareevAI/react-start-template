@@ -1,9 +1,9 @@
 import { categories } from '../../Category/Const/CategoryConst';
-import { products } from '../../Product/Const/ProductConst';
+import { products } from '../Const/ProductConst';
 import { Product } from '../Model/Product';
 import { getRandomNumber, getRandomString } from '../../../app/services/HelperService';
 
-//Максимальная стоимость продукта
+// Максимальная стоимость продукта
 const maxProductPrice = 5000;
 
 /**
@@ -16,8 +16,8 @@ export const createRandomProduct = (createdAt: string): Product => {
 
   const productIndex = getRandomNumber(products.length);
   const productName = products[productIndex].name;
-  const description = products[productIndex].description;
-  const photo = products[productIndex].photo;
+  const { description } = products[productIndex];
+  const { photo } = products[productIndex];
 
   const productId = getRandomString();
   const price = getRandomNumber(maxProductPrice, 1);

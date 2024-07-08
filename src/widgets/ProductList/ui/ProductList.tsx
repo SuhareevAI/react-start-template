@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState, FC } from 'react';
+import React, { useEffect, useRef, FC } from 'react';
 
+import { useTranslation } from 'react-i18next';
 import { useProducts } from '../lib/useProducts';
 import { Button } from '../../../shared/ui/Button/Button';
-import { useTranslation } from 'react-i18next';
 import s from './ProductList.module.sass';
 import { ProductListProps } from '../types/ProductList';
 import { ShortProductInfo } from '../../../features/ShortProductInfo/ui/ShortProductInfo';
@@ -43,7 +43,7 @@ export const ProductList: FC<ProductListProps> = ({ useIntersectionObserver = fa
         ))}
       </div>
       <div ref={ref}>
-        <Button className={s.ProductList__button} size={'medium'} style={'secondary'} onClick={getNextProducts}>
+        <Button className={s.ProductList__button} size="medium" style="secondary" onClick={getNextProducts}>
           {t('ProductList.showMoreButtonText')}
         </Button>
       </div>

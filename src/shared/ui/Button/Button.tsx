@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import s from '../../../shared/ui/Button/Button.module.sass';
+import s from './Button.module.sass';
 import ThemeContext from '../../../app/lib/ThemeContext';
 import { ButtonProps } from '../../types/ButtonTypes';
 

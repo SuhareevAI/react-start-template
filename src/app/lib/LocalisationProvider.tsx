@@ -1,4 +1,4 @@
-import React, { FC, useInsertionEffect } from 'react';
+import { FC, useInsertionEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Key } from '../constants/LocalisationConstants';
 

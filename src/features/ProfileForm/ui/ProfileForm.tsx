@@ -23,7 +23,7 @@ export const ProfileForm: FC = () => {
       console.log('values: ', values);
       actions.resetForm();
     },
-    validate: validate,
+    validate,
   });
 
   const { handleSubmit, values, touched, errors, submitCount, handleBlur, handleChange } = formManager;
@@ -54,7 +54,7 @@ export const ProfileForm: FC = () => {
         placeholder={t(`Forms.ProfileForm.Name.title`)}
         title={t(`Forms.ProfileForm.Name.title`)}
       />
-      <Button type="submit" style={'primary'} size="small" onClick={handleSubmit}>
+      <Button type="submit" style="primary" size="small" onClick={handleSubmit}>
         {t(`Forms.ProfileForm.Button.title`)}
       </Button>
     </form>

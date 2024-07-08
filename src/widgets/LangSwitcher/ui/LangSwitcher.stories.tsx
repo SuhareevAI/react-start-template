@@ -16,7 +16,7 @@ export const Primary = {
   render: () => (
     <>
       <CartButton count={0} />
-      <LangSwitcher></LangSwitcher>
+      <LangSwitcher />
     </>
   ),
 };

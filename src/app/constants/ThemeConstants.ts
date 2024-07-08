@@ -1,4 +1,4 @@
-import { Theme } from '../../app/types/ThemeTypes';
+import { Theme } from '../types/ThemeTypes';
 
 export const Key = 'theme';
 

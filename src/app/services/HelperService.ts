@@ -1,4 +1,4 @@
-//Получить произвольную строку
+// Получить произвольную строку
 export const getRandomString = (): string => {
   let randomString = '';
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -10,7 +10,7 @@ export const getRandomString = (): string => {
   return randomString;
 };
 
-//Получить произвольное число
+// Получить произвольное число
 export const getRandomNumber = (maxValue: number, minValue = 0): number => {
   return Math.floor(Math.random() * (maxValue - minValue)) + minValue;
 };

@@ -1,7 +1,7 @@
-import { Category } from '../../Category/Model/Category';
+import { Category } from '../Model/Category';
 import { getRandomString } from '../../../app/services/HelperService';
 
-//Список категорий
+// Список категорий
 export const categories: Category[] = [
   new Category(getRandomString(), 'Нонфикшн'),
   new Category(getRandomString(), 'Художественная литература'),

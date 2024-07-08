@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/react';
 import { RangeSlider } from './RangeSlider';
 import { RangeSliderProps } from '../../types/RangeSliderTypes';
 
-const Component = (props: RangeSliderProps) => {
+function Component(props: RangeSliderProps) {
   const [value, setValue] = useState<number>(0);
 
   return (
@@ -15,7 +15,7 @@ const Component = (props: RangeSliderProps) => {
       }}
     />
   );
-};
+}
 
 const meta: Meta<typeof RangeSlider> = {
   title: 'shared/RangeSlider',

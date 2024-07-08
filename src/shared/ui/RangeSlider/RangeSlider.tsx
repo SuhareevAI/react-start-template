@@ -16,7 +16,7 @@ export const RangeSlider: FC<RangeSliderProps> = ({ value, minValue, maxValue, o
       value = maxValue;
     }
 
-    return ((value - minValue) / (maxValue - minValue)) * 100 + '%';
+    return `${((value - minValue) / (maxValue - minValue)) * 100}%`;
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,8 +57,8 @@ export const RangeSlider: FC<RangeSliderProps> = ({ value, minValue, maxValue, o
 
   const setRunnerValue = (xPoint: number) => {
     const boundingClientRect = ref.current.getBoundingClientRect();
-    const left = boundingClientRect.left;
-    const width = boundingClientRect.width;
+    const { left } = boundingClientRect;
+    const { width } = boundingClientRect;
     const currentValue = xPoint - left;
     onChange((currentValue / width) * (maxValue - minValue) + minValue);
   };
@@ -85,7 +85,7 @@ export const RangeSlider: FC<RangeSliderProps> = ({ value, minValue, maxValue, o
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <div className={[s.RangeSlider__runner, s[theme]].join(' ')} style={{ left: setValue() }}></div>
+        <div className={[s.RangeSlider__runner, s[theme]].join(' ')} style={{ left: setValue() }} />
       </div>
       <input className={s.RangeSlider__input} type="number" value={value} onChange={handleChange} />
     </>

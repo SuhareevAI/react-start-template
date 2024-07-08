@@ -8,7 +8,7 @@ const FullProductInfo: FC<FullProductInfoProps> = ({ cost, images, categoryName,
     <div className={s.fullProduct}>
       <div className={s.fullProduct__images}>
         {images.map((item: string, index: number) => {
-          return <img key={index} className={s.fullProduct__image} src={item} alt={title}></img>;
+          return <img key={index} className={s.fullProduct__image} src={item} alt={title} />;
         })}
       </div>
       <div className={s.fullProduct__info}>

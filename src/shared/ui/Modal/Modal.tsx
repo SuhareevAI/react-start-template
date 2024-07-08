@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { createPortal } from 'react-dom';
-import { ModalBase } from '../Modal/ModalBase';
+import { ModalBase } from './ModalBase';
 import { ModalProps } from '../../types/ModalTypes';
 
 export const Modal: FC<ModalProps> = (modalProps) => {

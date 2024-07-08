@@ -1,7 +1,7 @@
 import React, { FC, useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { TooltipPosition, TooltipProps } from '../../types/TooltipTypes';
 import s from './Tooltip.module.sass';
-import { createPortal } from 'react-dom';
 
 export const Tooltip: FC<TooltipProps> = ({ text, children }) => {
   const ref = useRef(null);

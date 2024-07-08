@@ -13,7 +13,7 @@ export const Header: FC<HeaderProps> = ({ children }) => {
 
   return (
     <div className={[s.header, s[theme]].join(' ')}>
-      <Logo text={logoText} width={logoWidth} height={logoHeight}></Logo>
+      <Logo text={logoText} width={logoWidth} height={logoHeight} />
       <div className={s.header__nav}>{children}</div>
     </div>
   );
