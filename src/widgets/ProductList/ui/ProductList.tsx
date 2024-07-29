@@ -18,7 +18,6 @@ export const ProductList: FC<ProductListProps> = ({ useIntersectionObserver = fa
     }
 
     const observer = new IntersectionObserver(([entry]) => {
-      console.log(entry.isIntersecting);
       if (entry.isIntersecting) {
         getNextProducts();
       }

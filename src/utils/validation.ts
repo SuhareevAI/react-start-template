@@ -29,7 +29,6 @@ export const isNotValidEmail = (string?: string): boolean => {
 };
 
 export const isValidFileType = ({ type }: UploadFile, allowedTypes?: string) => {
-  console.log('ss');
   if (!allowedTypes) {
     return true;
   }

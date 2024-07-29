@@ -29,8 +29,6 @@ export const ProductForm: FC = () => {
       errors.category = t(`Errors.is_required`);
     }
 
-    console.log(values);
-
     if (values.photo == undefined) {
       errors.photoErrors = t(`Errors.is_required`);
     } else if (values.photo && !isValidFileType(values.photo, 'image/png')) {
