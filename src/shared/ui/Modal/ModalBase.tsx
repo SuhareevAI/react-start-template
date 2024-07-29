@@ -4,7 +4,7 @@ import { type ModalBaseProps } from '../../types/ModalTypes';
 
 const ModalBase: FC<ModalBaseProps> = ({ visible, header, children, onClose }) => {
   return (
-    <div className={s.container} style={{ display: !visible ? 'none' : 'block' }}>
+    <div className={s.modal__container} style={{ display: !visible ? 'none' : 'block', zIndex: '500' }}>
       <div className={s.modal}>
         <div className={s.modal__header}>
           <h5 className={s.modal__title}>{header}</h5>
@@ -12,9 +12,7 @@ const ModalBase: FC<ModalBaseProps> = ({ visible, header, children, onClose }) =
             <span>&times;</span>
           </button>
         </div>
-        <div className={s.modal__body}>
-          <p>{children}</p>
-        </div>
+        <div className={s.modal__body}>{children}</div>
       </div>
     </div>
   );

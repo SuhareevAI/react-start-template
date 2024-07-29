@@ -4,11 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '../../../shared/ui/Button/Button';
 import { NumberFormField } from '../../../shared/ui/FormField/NumberFormField';
 import { TextFormField } from '../../../shared/ui/FormField/TextFormField';
-import { isNotDefinedString } from '../../../utils/validation';
+import { isNotDefinedString, isValidFileType } from '../../../utils/validation';
 import { ProductFormErrors, ProductFormValues } from '../types/ProductFormTypes';
 import { TextAreaFormField } from '../../../shared/ui/FormField/TextAreaFormField';
-import { SelectFormField } from '../../../shared/ui/FormField/SelectFormField';
 import { categories } from '../../../entities/Category/Const/CategoryConst';
+import { Uploader } from '../../../shared/ui/FormField/UploadFormField';
+import { UploadFile } from 'antd';
+import { SelectFormField } from '../../../shared/ui/FormField/SelectFormField';
 
 export const ProductForm: FC = () => {
   const { t } = useTranslation();
@@ -27,6 +29,14 @@ export const ProductForm: FC = () => {
       errors.category = t(`Errors.is_required`);
     }
 
+    console.log(values);
+
+    if (values.photo == undefined) {
+      errors.photoErrors = t(`Errors.is_required`);
+    } else if (values.photo && !isValidFileType(values.photo, 'image/png')) {
+      errors.photoErrors = t(`Errors.need_image_file`);
+    }
+
     return errors;
   };
 
@@ -37,6 +47,8 @@ export const ProductForm: FC = () => {
       oldPrice: undefined,
       desc: undefined,
       photo: undefined,
+      photoErrors: undefined,
+      photoTouched: undefined,
       category: undefined,
     },
     onSubmit: (values, actions) => {
@@ -47,10 +59,22 @@ export const ProductForm: FC = () => {
   });
 
   const { handleSubmit, values, touched, errors, submitCount, handleBlur, handleChange } = formManager;
+
   const options: { value: string; label: string }[] = [];
   categories.map((values) => {
     options.push({ value: values.id, label: values.name });
   });
+
+  const beforeUpload = (photo: UploadFile) => {
+    formManager.setFieldValue('photo', photo);
+    return true;
+  };
+
+  const onFilechange = (file: any) => {
+    if (file.file.status == 'removed') {
+      formManager.setFieldValue('photo', undefined);
+    }
+  };
 
   return (
     <form>
@@ -106,18 +130,6 @@ export const ProductForm: FC = () => {
         title={t(`Forms.ProductForm.OldPrice.placeholder`)}
       />
 
-      <TextFormField
-        onBlur={handleBlur}
-        onChange={handleChange}
-        submitCount={submitCount}
-        errors={errors.photo}
-        touched={touched.photo}
-        name="photo"
-        value={values.photo}
-        placeholder={t(`Forms.ProductForm.Photo.title`)}
-        title={t(`Forms.ProductForm.Photo.placeholder`)}
-      />
-
       <SelectFormField
         onBlur={handleBlur}
         onChange={(value: ChangeEvent<any>) => {
@@ -130,6 +142,16 @@ export const ProductForm: FC = () => {
         placeholder={t(`Forms.ProductForm.Category.title`)}
         title={t(`Forms.ProductForm.Category.placeholder`)}
         options={options}
+      />
+
+      <Uploader
+        beforeUpload={beforeUpload}
+        onChange={onFilechange}
+        submitCount={submitCount}
+        errors={errors.photoErrors}
+        touched={touched.photoTouched}
+        title="photo"
+        fileList={values.photo != null ? [values.photo] : []}
       />
 
       <Button type="submit" style="primary" size="small" onClick={handleSubmit}>

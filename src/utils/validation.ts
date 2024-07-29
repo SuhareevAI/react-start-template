@@ -1,3 +1,4 @@
+import { UploadFile } from 'antd';
 import { Help } from '../shared/ui/FormItem/FormItem';
 
 export type ValidateStatus = 'error' | '';
@@ -25,4 +26,14 @@ export const isNotValidEmail = (string?: string): boolean => {
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   );
   return regexp.test(string);
+};
+
+export const isValidFileType = ({ type }: UploadFile, allowedTypes?: string) => {
+  console.log('ss');
+  if (!allowedTypes) {
+    return true;
+  }
+  if (type) {
+    return allowedTypes.includes(type);
+  }
 };

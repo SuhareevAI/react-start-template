@@ -4,11 +4,15 @@ import { Product } from '../../../entities/Product/Model/Product';
 
 const maxProductsCount = 20;
 
-const getProducts = () => {
+const getProducts = (count = 0) => {
   let index = 0;
   const newProducts: Product[] = [];
 
-  while (index < maxProductsCount) {
+  if (count == 0) {
+    count = maxProductsCount;
+  }
+
+  while (index < count) {
     const currentDate = new Date();
     const product = createRandomProduct(currentDate.toDateString());
     newProducts.push(product);

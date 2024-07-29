@@ -87,6 +87,7 @@
     "is_required" : "Required field",
     "not_same_password" : "Passwords don't match",
     "is_not_valid_email" : "Email is not valid",
-    "number_is_lower_then_zero" : "Number need to be upper then zero"
+    "number_is_lower_then_zero" : "Number need to be upper then zero",
+    "need_image_file" : "Need image file"
   }
 }

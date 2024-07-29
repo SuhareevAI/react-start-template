@@ -1,0 +1,29 @@
+import { Upload } from 'antd';
+import React, { FC } from 'react';
+import { Button } from '../Button/Button';
+import { MdOutlineFileUpload } from 'react-icons/md';
+import { FormItem } from '../FormItem/FormItem';
+import { getValidates } from '../../../utils/validation';
+import { UploaderProps } from '../../types/FormFieldTypes';
+
+export const Uploader: FC<UploaderProps> = ({
+  title,
+  beforeUpload,
+  onChange,
+  fileList,
+  errors,
+  touched,
+  submitCount,
+}) => {
+  const { validateStatus, help } = getValidates(errors, touched, submitCount);
+
+  return (
+    <FormItem title={title} validateStatus={validateStatus} help={help}>
+      <Upload beforeUpload={beforeUpload} fileList={fileList} onChange={onChange}>
+        <Button size="small" type="button" style="secondary">
+          <MdOutlineFileUpload /> Выберите фото...
+        </Button>
+      </Upload>
+    </FormItem>
+  );
+};

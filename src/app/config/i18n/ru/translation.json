@@ -87,6 +87,7 @@
     "is_required" : "Обязательное поле",
     "not_same_password" : "Пароли не совпадают",
     "is_not_valid_email" : "Не верный формат email",
-    "number_is_lower_then_zero" : "Число должно быть больше нуля"
+    "number_is_lower_then_zero" : "Число должно быть больше нуля",
+    "need_image_file" : "Требуется выбрать изображение"
   }
 }
