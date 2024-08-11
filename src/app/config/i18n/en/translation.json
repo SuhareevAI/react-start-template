@@ -81,6 +81,20 @@
       "Button" : {
         "title" : "Add"
       }
+    },
+    "Cart": {
+      "EmptyCart" : "Cart is empty"
+    }
+  },
+  "Navigation" : {
+    "Main" : "Main",
+    "Cart" : "Cart",
+    "Profile" : "Profile",
+    "AddProduct" : "Add product"
+  },
+  "Pages" : {
+    "AddProduct" : {
+      "title" : "Add product"
     }
   },
   "Errors" : {

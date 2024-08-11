@@ -1,6 +1,6 @@
 import { categories } from '../../Category/Const/CategoryConst';
 import { products } from '../Const/ProductConst';
-import { Product } from '../Model/Product';
+import { ProductModel } from '../Model/ProductModel';
 import { getRandomNumber, getRandomString } from '../../../app/services/HelperService';
 
 // Максимальная стоимость продукта
@@ -10,7 +10,7 @@ const maxProductPrice = 5000;
  * Создает случайный продукт (Product).
  * Принимает дату создания (строка)
  * */
-export const createRandomProduct = (createdAt: string): Product => {
+export const createRandomProduct = (createdAt: string): ProductModel => {
   const categoryIndex = getRandomNumber(categories.length);
   const category = categories[categoryIndex];
 
@@ -22,5 +22,14 @@ export const createRandomProduct = (createdAt: string): Product => {
   const productId = getRandomString();
   const price = getRandomNumber(maxProductPrice, 1);
 
-  return new Product(productId, productName, photo, createdAt, price, category, description);
+  const product = new ProductModel();
+  product.id = productId;
+  product.name = productName;
+  product.photo = photo;
+  product.createdAt = createdAt;
+  product.price = price;
+  product.category = category;
+  product.desc = description;
+
+  return product;
 };

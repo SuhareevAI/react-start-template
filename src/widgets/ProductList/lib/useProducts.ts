@@ -1,33 +1,29 @@
 import { useEffect, useState } from 'react';
-import { createRandomProduct } from '../../../entities/Product/Services/ProductService';
-import { Product } from '../../../entities/Product/Model/Product';
+import { ProductModel } from '../../../entities/Product/Model/ProductModel';
+import { getProducts } from '../../../shared/api/products';
 
-const maxProductsCount = 20;
+export const useProducts = (pageSize?: number) => {
+  const [products, setProducts] = useState<ProductModel[]>([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [maxPage, setMaxPage] = useState(1);
 
-const getProducts = (count = 0) => {
-  let index = 0;
-  const newProducts: Product[] = [];
-
-  if (count == 0) {
-    count = maxProductsCount;
-  }
-
-  while (index < count) {
-    const currentDate = new Date();
-    const product = createRandomProduct(currentDate.toDateString());
-    newProducts.push(product);
-    index++;
-  }
-  return newProducts;
-};
-
-export const useProducts = () => {
-  const [products, setProducts] = useState<Product[]>(() => getProducts());
+  useEffect(() => {
+    getProducts(pageSize, pageNumber).then((data) => {
+      setProducts(data.data);
+      setMaxPage(data.pagination.total / data.pagination.pageSize);
+    });
+  }, [getProducts]);
 
   const getNextProducts = () => {
-    const nextProducts = getProducts();
-    setProducts(products.concat(nextProducts));
+    if (pageNumber >= maxPage) {
+      return;
+    }
+    setPageNumber(pageNumber + 1);
+    getProducts(pageSize, pageNumber + 1).then((data) => setProducts((products) => [...products, ...data.data]));
   };
 
-  return { products, getNextProducts, setProducts, getProducts };
+  return {
+    products,
+    getNextProducts,
+  };
 };

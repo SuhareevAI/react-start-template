@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../../shared/ui/Button/Button';
 import { NumberFormField } from '../../../shared/ui/FormField/NumberFormField';
@@ -7,14 +7,16 @@ import { TextFormField } from '../../../shared/ui/FormField/TextFormField';
 import { isNotDefinedString, isValidFileType } from '../../../utils/validation';
 import { ProductFormErrors, ProductFormValues } from '../types/ProductFormTypes';
 import { TextAreaFormField } from '../../../shared/ui/FormField/TextAreaFormField';
-import { categories } from '../../../entities/Category/Const/CategoryConst';
 import { Uploader } from '../../../shared/ui/FormField/UploadFormField';
 import { UploadFile } from 'antd';
 import { SelectFormField } from '../../../shared/ui/FormField/SelectFormField';
+import { ProductModel } from '../../../entities/Product/Model/ProductModel';
+import { getCategories } from '../../../shared/api/categories';
+import { UploadChangeParam } from 'antd/es/upload';
 
 export const ProductForm: FC = () => {
   const { t } = useTranslation();
-
+  const [categories, setCategories] = useState([]);
   const validate = (values: ProductFormValues) => {
     const errors = {} as ProductFormErrors;
     if (isNotDefinedString(values.name)) {
@@ -58,17 +60,22 @@ export const ProductForm: FC = () => {
 
   const { handleSubmit, values, touched, errors, submitCount, handleBlur, handleChange } = formManager;
 
-  const options: { value: string; label: string }[] = [];
-  categories.map((values) => {
-    options.push({ value: values.id, label: values.name });
-  });
+  useEffect(() => {
+    getCategories(0, 1000).then((data) => {
+      const d = data.data.map((values: ProductModel) => ({
+        label: values.name,
+        value: values.id,
+      }));
+      setCategories(d);
+    });
+  }, [JSON.stringify(categories)]);
 
   const beforeUpload = (photo: UploadFile) => {
     formManager.setFieldValue('photo', photo);
     return true;
   };
 
-  const onFilechange = (file: any) => {
+  const onFilechange = (file: UploadChangeParam) => {
     if (file.file.status == 'removed') {
       formManager.setFieldValue('photo', undefined);
     }
@@ -139,7 +146,7 @@ export const ProductForm: FC = () => {
         value={values.category}
         placeholder={t(`Forms.ProductForm.Category.title`)}
         title={t(`Forms.ProductForm.Category.placeholder`)}
-        options={options}
+        options={categories}
       />
 
       <Uploader

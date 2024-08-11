@@ -5,10 +5,12 @@ import { Button } from '../../../shared/ui/Button/Button';
 import { TextFormField } from '../../../shared/ui/FormField/TextFormField';
 import { TextAreaFormField } from '../../../shared/ui/FormField/TextAreaFormField';
 import { ProfileFormErrors, ProfileFormValues } from '../types/ProfileFormTypes';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../app/redux/store';
 
 export const ProfileForm: FC = () => {
   const { t } = useTranslation();
-
+  const user = useSelector<AppState, AppState['user']>((state): AppState['user'] => state.user);
   const validate = (values: ProfileFormValues) => {
     const errors = {} as ProfileFormErrors;
     if (!values.name) {
@@ -18,7 +20,7 @@ export const ProfileForm: FC = () => {
   };
 
   const formManager = useFormik<ProfileFormValues>({
-    initialValues: { name: '', about: '' },
+    initialValues: { name: user.login, about: user.about },
     onSubmit: (values, actions) => {
       console.log('values: ', values);
       actions.resetForm();
@@ -51,8 +53,8 @@ export const ProfileForm: FC = () => {
         submitCount={submitCount}
         touched={touched.about}
         name="about"
-        placeholder={t(`Forms.ProfileForm.Name.title`)}
-        title={t(`Forms.ProfileForm.Name.title`)}
+        placeholder={t(`Forms.ProfileForm.About.title`)}
+        title={t(`Forms.ProfileForm.About.title`)}
       />
       <Button type="submit" style="primary" size="small" onClick={handleSubmit}>
         {t(`Forms.ProfileForm.Button.title`)}

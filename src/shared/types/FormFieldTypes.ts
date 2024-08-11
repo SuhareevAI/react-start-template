@@ -62,3 +62,5 @@ export type UploaderProps = Pick<FormProps, 'disabled' | 'autoFocusElement'> & {
   fileList: UploadFile[];
   onChange: (info: UploadChangeParam<UploadFile>) => void;
 };
+
+export type optionType = { value: string; label: string };

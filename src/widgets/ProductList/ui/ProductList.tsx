@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, FC } from 'react';
-
 import { useTranslation } from 'react-i18next';
 import { useProducts } from '../lib/useProducts';
 import { Button } from '../../../shared/ui/Button/Button';
@@ -8,7 +7,7 @@ import { ProductListProps } from '../types/ProductList';
 import { ShortProductInfo } from '../../../features/ShortProductInfo/ui/ShortProductInfo';
 
 export const ProductList: FC<ProductListProps> = ({ useIntersectionObserver = false }) => {
-  const { products, getNextProducts } = useProducts();
+  const { products, getNextProducts } = useProducts(20);
   const { t } = useTranslation();
   const ref = useRef(null);
 
@@ -23,7 +22,6 @@ export const ProductList: FC<ProductListProps> = ({ useIntersectionObserver = fa
       }
     });
     observer.observe(ref.current);
-
     return () => observer.disconnect();
   }, [getNextProducts]);
 
@@ -33,10 +31,11 @@ export const ProductList: FC<ProductListProps> = ({ useIntersectionObserver = fa
         {products.map((p) => (
           <ShortProductInfo
             key={p.id}
-            cost={p.price}
-            image={p.photo}
-            title={p.name}
-            description={p.desc}
+            id={p.id}
+            price={p.price}
+            photo={p.photo}
+            name={p.name}
+            desc={p.desc}
             style={s.ProductListItems}
           />
         ))}

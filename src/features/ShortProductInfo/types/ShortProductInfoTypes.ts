@@ -1,7 +1,5 @@
-export interface ShortProductInfoProps {
-  cost: number;
-  image: string;
-  title: string;
-  description: string;
+import { ShortProductInfoModel } from '../../../entities/Product/Model/ProductModel';
+
+export class ShortProductInfoProps extends ShortProductInfoModel {
   style?: string;
 }

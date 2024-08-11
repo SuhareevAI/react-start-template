@@ -7,7 +7,6 @@ import { SelectFieldProps } from '../../types/FormFieldTypes';
 export const SelectFormField = memo<SelectFieldProps>(
   ({ onChange, onBlur, touched, value, errors, disabled, submitCount, placeholder, title, options }) => {
     const { validateStatus, help } = getValidates(errors, touched, submitCount);
-
     return (
       <FormItem title={title} validateStatus={validateStatus} help={help}>
         <Select

@@ -80,7 +80,21 @@
       },
       "Button" : {
         "title" : "Добавить"
-      }
+      }     
+    },
+    "Cart": {
+      "EmptyCart" : "Корзина пустая"
+    }
+  },
+  "Navigation" : {
+    "Main" : "Главная",
+    "Cart" : "Корзина",
+    "Profile" : "Профиль",
+    "AddProduct" : "Добавить товар"
+  },
+  "Pages" : {
+    "AddProduct" : {
+      "title" : "Добавить товар"
     }
   },
   "Errors" : {
