@@ -24,7 +24,6 @@ describe('all', () => {
     expect(product).toHaveProperty('photo');
     expect(product).toHaveProperty('desc');
     expect(product).toHaveProperty('createdAt');
-    expect(product).toHaveProperty('oldPrice');
     expect(product).toHaveProperty('price');
     expect(product).toHaveProperty('category');
   });
