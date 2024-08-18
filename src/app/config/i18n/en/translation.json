@@ -52,6 +52,20 @@
         "title" : "Sign in"
       }
     },
+    "RegForm" : {
+      "Title" : "Sign up",
+      "Email" : {
+        "title" : "Email",
+        "placeholder" : "Enter email"
+      },
+      "Password" : {
+        "title" : "Password",
+        "placeholder" : "Enter password"
+      },
+      "Button" : {
+        "title" : "Sign up"
+      }
+    },
     "ProductForm" : {
       "Title" : "",
       "Name" : {

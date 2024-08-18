@@ -52,6 +52,20 @@
         "title" : "Войти"
       }
     },
+    "RegForm" : {
+      "Title" : "Регистрация",
+      "Email" : {
+        "title" : "Email",
+        "placeholder" : "Укажите email"
+      },
+      "Password" : {
+        "title" : "Пароль",
+        "placeholder" : "Введите пароль"
+      },
+      "Button" : {
+        "title" : "Зарегистрироваться"
+      }
+    },
     "ProductForm" : {
       "Title" : "",
       "Name" : {

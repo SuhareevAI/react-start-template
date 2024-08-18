@@ -13,7 +13,6 @@ export const Login: FC<LoginProps> = ({ width, height }) => {
 
   const onClick = () => {
     dispatch(tokenActions.clear());
-    dispatch(userActions.clearInfo());
   };
 
   return (
