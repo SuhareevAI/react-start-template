@@ -1,9 +1,9 @@
-import { select, takeEvery } from 'redux-saga/effects';
+import { select, takeEvery, takeLatest } from 'redux-saga/effects';
 import { tokenActions, tokenSelectors } from '../token';
 
 export function* setToken(): Generator {
   const token = (yield select(tokenSelectors.get)) as string;
-  localStorage.setItem('token', token || '');
+  localStorage.setItem('token', token || null);
 }
 
 export function* clearToken(): Generator {
@@ -11,6 +11,6 @@ export function* clearToken(): Generator {
 }
 
 export function* tokenSaga() {
-  yield takeEvery(tokenActions.generate().type, setToken);
   yield takeEvery(tokenActions.clear().type, clearToken);
+  yield takeLatest(tokenActions.generate.type, setToken);
 }

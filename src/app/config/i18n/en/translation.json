@@ -112,10 +112,26 @@
     }
   },
   "Errors" : {
-    "is_required" : "Required field",
-    "not_same_password" : "Passwords don't match",
     "is_not_valid_email" : "Email is not valid",
     "number_is_lower_then_zero" : "Number need to be upper then zero",
-    "need_image_file" : "Need image file"
+    "need_image_file" : "Need image file",
+    "unexpected_error": "Unexpected error. We automatically register errors and will fix everything soon",
+    "Failed to fetch": "Connection error. Go to the server directory and start the server using the start script",
+    "is_required": "Required field",
+    "invalid_email_address": "Invalid email address",
+    "too_short_password": "The password is too short",
+    "not_same_password": "Passwords dont match",
+    "INCORRECT_EMAIL_OR_PASSWORD": "Incorrect password or email",
+    "NOT_FOUND": "An entity with this id was not found",
+    "USER_NOT_REGISTER": "Register to access this feature",
+    "INCORRECT_PASSWORD": "Invalid password",
+    "ACCOUNT_ALREADY_EXIST": "An account with this email already exists",
+    "INVALID_PASSWORD": "The password must contain at least 8 characters",
+    "INVALID_EMAIL": "Invalid email",
+    "TOKEN_REQUIRED_ERROR": "Server token error. We automatically register all errors and will fix everything soon",
+    "AUTH_ERROR": "You are not logged in, log in to your account and try again",
+    "DATA_BASE_ERROR": "Database server error. We automatically register all errors and will fix everything soon",
+    "INTERNAL_SERVER_ERROR": "Server error. We automatically register all errors and will fix everything soon",
+    "ERR_INVALID_NICKNAME": "The alias must be at least 7 characters and can contain only numbers, letters and an underscore"
   }
 }

@@ -1,5 +1,6 @@
 import { UploadFile } from 'antd';
 import { Help } from '../shared/ui/FormItem/FormItem';
+import { ApolloError } from '@apollo/client';
 
 export type ValidateStatus = 'error' | '';
 
@@ -35,4 +36,14 @@ export const isValidFileType = ({ type }: UploadFile, allowedTypes?: string) => 
   if (type) {
     return allowedTypes.includes(type);
   }
+};
+
+export const getServerErrorCode = (error: ApolloError) => {
+  let errText = null;
+  if ('graphQLErrors' in error && Array.isArray(error.graphQLErrors)) {
+    error.graphQLErrors.forEach((err) => {
+      errText = err.extensions.code;
+    });
+  }
+  return errText ?? 'INTERNAL_SERVER_ERROR';
 };
