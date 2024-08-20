@@ -62,7 +62,7 @@ export const ProductForm: FC = () => {
 
   useEffect(() => {
     getCategories(0, 1000).then((data) => {
-      const d = data.data.map((values: ProductModel) => ({
+      const d = data.data?.map((values: ProductModel) => ({
         label: values.name,
         value: values.id,
       }));
