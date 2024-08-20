@@ -28,7 +28,7 @@ export const ProductList: FC<ProductListProps> = ({ useIntersectionObserver = fa
   return (
     <div>
       <div className={s.ProductList__items}>
-        {products.map((p) => (
+        {products?.map((p) => (
           <ShortProductInfo
             key={p.id}
             id={p.id}

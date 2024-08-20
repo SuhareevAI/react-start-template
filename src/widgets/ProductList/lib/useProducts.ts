@@ -9,8 +9,10 @@ export const useProducts = (pageSize?: number) => {
 
   useEffect(() => {
     getProducts(pageSize, pageNumber).then((data) => {
-      setProducts(data.data);
-      setMaxPage(data.pagination.total / data.pagination.pageSize);
+      if (data && data.data) {
+        setProducts(data.data);
+        setMaxPage(data.pagination.total / data.pagination.pageSize);
+      }
     });
   }, [getProducts]);
 

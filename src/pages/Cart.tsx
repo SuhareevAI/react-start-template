@@ -19,8 +19,10 @@ export const Cart: FC = () => {
       cartIds.push(cart.productId);
     });
     getProducts(0, 1000).then((data) => {
-      cartProducts = data.data.filter((p: ProductModel) => cartIds.includes(p.id));
-      setProducts(cartProducts);
+      if (data && data.data) {
+        cartProducts = data.data.filter((p: ProductModel) => cartIds.includes(p.id));
+        setProducts(cartProducts);
+      }
     });
   }, [JSON.stringify(cart.products)]);
 
