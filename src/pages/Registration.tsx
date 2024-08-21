@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useTransition } from 'react';
 import s from '../app/styles/base.sass';
 import { RegistrationForm } from '../features/RegistrationForm/ui/RegistrationForm';
-import { RegistrationFormExt } from '../features/RegistrationForm/ui/RegistrationFormExt';
-import { Divider } from 'antd';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const Registration = () => {
+  const {t} = useTranslation();
   return (
     <div className={s.container} style={{ padding: '10px' }}>
       <RegistrationForm />
-      <Divider />
-      <RegistrationFormExt />
+      <Link to="/auth">{t('Navigation.Auth')}</Link>
     </div>
   );
 };

@@ -1,18 +1,22 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from '../../app/types/serverTypes';
-import { Credential, signup } from '../../shared/api/user';
+import { SIGN_UP } from '../lib/profileConnections';
+import client from '../lib/client';
 
-export const register = createAsyncThunk(
-  'user/register',
-  async (credential: Credential, { rejectWithValue, dispatch }) => {
-    try {
-      const data = await signup(credential);
-      dispatch(userActions.setInfo(data));
-    } catch (error) {
-      return rejectWithValue(error.message);
+export const fetchUser = createAsyncThunk(
+  'user/fetchUser',
+  async (credentials: {email: string, password: string, commandId: string}) => {
+    const response = await client.mutate({
+            mutation: SIGN_UP,
+            variables: credentials});
+        return response.data;
     }
-  }
 );
+
+export type Credential = {
+  email: string;
+  password: string;
+};
 
 type initialStateType = {
   status: 'loading' | 'resolve' | 'rejected';
@@ -45,13 +49,13 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(register.pending, (state, action) => {
+    builder.addCase(fetchUser.pending, (state, action) => {
       state.status = 'loading';
     });
-    builder.addCase(register.fulfilled, (state, action) => {
+    builder.addCase(fetchUser.fulfilled, (state, action) => {
       state.status = 'resolve';
     });
-    builder.addCase(register.rejected, (state, action) => {
+    builder.addCase(fetchUser.rejected, (state, action) => {
       state.status = 'rejected';
       state.error = action.payload as string;
     });

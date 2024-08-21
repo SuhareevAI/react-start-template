@@ -31,9 +31,6 @@ export const Navigation: FC = () => {
       <NavLink className={[s.nav__item, s[theme]].join(' ')} to="addProduct">
         {t('Navigation.AddProduct')}
       </NavLink>
-      <NavLink className={[s.nav__item, s[theme]].join(' ')} to="registration">
-        Регистрация
-      </NavLink>
       <Login height={25} width={25} />
     </>
   );
@@ -52,14 +49,7 @@ export const Navigation: FC = () => {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="addProduct"
-            element={
-              <ProtectedRoute>
-                <AddProduct />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="addProduct" element={ <ProtectedRoute><AddProduct /></ProtectedRoute>}/>
           <Route path="auth" element={<Auth />} />
           <Route path="registration" element={<Registration />} />
         </Routes>

@@ -1,30 +1,13 @@
-import React, { useEffect, useRef, FC } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useProducts } from '../lib/useProducts';
-import { Button } from '../../../shared/ui/Button/Button';
+import React, { FC } from 'react';
 import s from './ProductList.module.sass';
-import { ProductListProps } from '../types/ProductList';
 import { ShortProductInfo } from '../../../features/ShortProductInfo/ui/ShortProductInfo';
+import { useQuery } from '@apollo/client';
+import { GET_PRODUCTS, ProductsData } from 'src/app/lib/producConnections';
 
-export const ProductList: FC<ProductListProps> = ({ useIntersectionObserver = false }) => {
-  const { products, getNextProducts } = useProducts(20);
-  const { t } = useTranslation();
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (!useIntersectionObserver) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        getNextProducts();
-      }
-    });
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [getNextProducts]);
-
+export const ProductList: FC = () => {
+  const {loading, data} = useQuery<ProductsData>(GET_PRODUCTS);
+  const products = data?.products?.getMany?.data;
+  
   return (
     <div>
       <div className={s.ProductList__items}>
@@ -39,11 +22,6 @@ export const ProductList: FC<ProductListProps> = ({ useIntersectionObserver = fa
             style={s.ProductListItems}
           />
         ))}
-      </div>
-      <div ref={ref}>
-        <Button className={s.ProductList__button} size="medium" style="secondary" onClick={getNextProducts}>
-          {t('ProductList.showMoreButtonText')}
-        </Button>
       </div>
     </div>
   );

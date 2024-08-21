@@ -104,7 +104,9 @@
     "Main" : "Главная",
     "Cart" : "Корзина",
     "Profile" : "Профиль",
-    "AddProduct" : "Добавить товар"
+    "AddProduct" : "Добавить товар",
+    "Registration": "Регистрация",
+    "Auth": "Войти"
   },
   "Pages" : {
     "AddProduct" : {

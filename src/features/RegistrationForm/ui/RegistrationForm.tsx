@@ -1,35 +1,50 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { Button } from '../../../shared/ui/Button/Button';
 import { TextFormField } from '../../../shared/ui/FormField/TextFormField';
 import { PasswordFormField } from '../../../shared/ui/FormField/PasswordFormField';
-import { RegistrationFormValues } from '../types/RegistrationFormTypes';
-import { useDispatch } from 'react-redux';
-import { signup } from '../../../shared/api/user';
+import { RegistrationFormErrors, RegistrationFormValues } from '../types/RegistrationFormTypes';
+import { fetchUser } from '../../../app/redux/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, AppState } from '../../../app/redux/store';
 import { message } from 'antd';
-import { userActions } from '../../../app/redux/user';
+import { getServerErrorCode, isNotDefinedString, isNotValidEmail } from 'src/utils/validation';
+import { commandId } from 'src/app/constants/Api';
 
 export const RegistrationForm = memo(() => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const { error } = useSelector<AppState, AppState['user']>((state) => state.user);
 
   const formManager = useFormik<RegistrationFormValues>({
     initialValues: { email: undefined, password: undefined },
     onSubmit: (values, actions) => {
-      signup({ email: values.email, password: values.password })
-        .then((res) => {
-          dispatch(userActions.setInfo(res));
-          actions.resetForm();
-        })
-        .catch((error) => {
-          message.error(error.message);
-        });
+      dispatch(fetchUser({email: values.email, password: values.password, commandId: commandId}));
+      actions.resetForm();
     },
     validate: (values) => {
-      console.log('validate');
+      const errors = {} as RegistrationFormErrors;
+      if (isNotDefinedString(values.email)) {
+        errors.email = t(`Errors.is_required`);
+      }
+  
+      if (!isNotDefinedString(values.email) && !isNotValidEmail(values.email)) {
+        errors.email = t(`Errors.is_not_valid_email`);
+      }
+  
+      if (isNotDefinedString(values.password)) {
+        errors.password = t(`Errors.is_required`);
+      }
+      return errors;
     },
   });
+
+  useEffect(() => {
+    if (error) {
+      message.error(t(`Errors.${(error)}`));
+    }
+  }, [error]);
 
   const { handleSubmit, values, touched, errors, submitCount, handleBlur, handleChange } = formManager;
 
@@ -67,8 +82,4 @@ export const RegistrationForm = memo(() => {
   );
 });
 
-RegistrationForm.displayName = 'RegistrationForm';
-
-function setInfo(): any {
-  throw new Error('Function not implemented.');
-}
+RegistrationForm.displayName = 'RegistrationFormExt';

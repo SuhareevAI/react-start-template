@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { tokenActions } from '../../../app/redux/token';
 import { useMutation } from '@apollo/client';
-import { SIGN_UP, SignupData } from '../../../app/lib/signupConnections';
+import { SIGN_UP, SignupData } from '../../../app/lib/profileConnections';
 import { message } from 'antd';
 import { RegistrationFormValues } from '../../RegistrationForm/types/RegistrationFormTypes';
 

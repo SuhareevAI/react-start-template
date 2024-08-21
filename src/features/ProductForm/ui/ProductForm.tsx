@@ -10,13 +10,16 @@ import { TextAreaFormField } from '../../../shared/ui/FormField/TextAreaFormFiel
 import { Uploader } from '../../../shared/ui/FormField/UploadFormField';
 import { UploadFile } from 'antd';
 import { SelectFormField } from '../../../shared/ui/FormField/SelectFormField';
-import { ProductModel } from '../../../entities/Product/Model/ProductModel';
-import { getCategories } from '../../../shared/api/categories';
 import { UploadChangeParam } from 'antd/es/upload';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, AppState } from 'src/app/redux/store';
+import { fetchCategories } from 'src/app/redux/category';
 
 export const ProductForm: FC = () => {
   const { t } = useTranslation();
-  const [categories, setCategories] = useState([]);
+  const {categories} = useSelector((state : AppState) => state.category);
+  const dispatch = useDispatch<AppDispatch>();
+
   const validate = (values: ProductFormValues) => {
     const errors = {} as ProductFormErrors;
     if (isNotDefinedString(values.name)) {
@@ -40,6 +43,15 @@ export const ProductForm: FC = () => {
     return errors;
   };
 
+  const categoryOptions = categories.map(category => ({
+    value: category.id,
+    label: category.name
+  }));
+
+  useEffect(() => {
+    dispatch(fetchCategories())
+  }, [dispatch])
+
   const formManager = useFormik<ProductFormValues>({
     initialValues: {
       name: undefined,
@@ -59,16 +71,6 @@ export const ProductForm: FC = () => {
   });
 
   const { handleSubmit, values, touched, errors, submitCount, handleBlur, handleChange } = formManager;
-
-  useEffect(() => {
-    getCategories(0, 1000).then((data) => {
-      const d = data.data?.map((values: ProductModel) => ({
-        label: values.name,
-        value: values.id,
-      }));
-      setCategories(d);
-    });
-  }, [JSON.stringify(categories)]);
 
   const beforeUpload = (photo: UploadFile) => {
     formManager.setFieldValue('photo', photo);
@@ -146,7 +148,7 @@ export const ProductForm: FC = () => {
         value={values.category}
         placeholder={t(`Forms.ProductForm.Category.title`)}
         title={t(`Forms.ProductForm.Category.placeholder`)}
-        options={categories}
+        options={categoryOptions}
       />
 
       <Uploader

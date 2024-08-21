@@ -104,7 +104,9 @@
     "Main" : "Main",
     "Cart" : "Cart",
     "Profile" : "Profile",
-    "AddProduct" : "Add product"
+    "AddProduct" : "Add product",
+    "Registration": "Sign in",
+    "Auth": "Sign up"
   },
   "Pages" : {
     "AddProduct" : {
