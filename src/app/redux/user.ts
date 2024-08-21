@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from '../../app/types/serverTypes';
-import { SIGN_UP } from '../lib/profileConnections';
+import { SIGN_UP } from '../lib/api/profileConnections';
 import client from '../lib/client';
 
 export const fetchUser = createAsyncThunk(

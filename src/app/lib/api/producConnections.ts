@@ -9,6 +9,26 @@ export type ProductsData = {
     }
 }
 
+export type ProductGetManyInput = {
+  ids: string;
+}
+
+export const GET_PRODUCT_BY_IDS = gql`
+query GetMany($input: ProductGetManyInput) {
+  products {
+    getMany(input: $input) {
+      data {
+        id
+        name
+        photo
+        price
+        desc
+      }
+    }
+  }
+}
+`
+
 export const GET_PRODUCTS = gql`
 query Query($input: ProductGetManyInput) {
     products {
@@ -22,14 +42,6 @@ query Query($input: ProductGetManyInput) {
           updatedAt
           oldPrice
           price
-          category {
-            id
-            name
-            photo
-            createdAt
-            updatedAt
-            commandId
-          }
           commandId
         }
         pagination {

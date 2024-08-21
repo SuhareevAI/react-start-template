@@ -9,8 +9,9 @@ import { cartActions } from '../../../app/redux/cart';
 
 const CartProduct: FC<CartProductProps> = ({ id, image, title, cost, style }) => {
   const dispatch = useDispatch();
-  const cart = useSelector<AppState, AppState['cart']>((state): AppState['cart'] => state.cart);
-  const count = cart.products.find((p) => p.productId == id)?.count ?? 0;
+  const {products} = useSelector<AppState, AppState['cart']>((state) => state.cart);
+  const count = products.find((p) => p.productId == id)?.count ?? 0;
+  
   const onIncrement = () => {
     dispatch(cartActions.add(id));
   };

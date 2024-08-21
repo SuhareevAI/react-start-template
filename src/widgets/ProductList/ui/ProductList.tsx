@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import s from './ProductList.module.sass';
 import { ShortProductInfo } from '../../../features/ShortProductInfo/ui/ShortProductInfo';
 import { useQuery } from '@apollo/client';
-import { GET_PRODUCTS, ProductsData } from 'src/app/lib/producConnections';
+import { GET_PRODUCTS, ProductsData } from 'src/app/lib/api/producConnections';
 
 export const ProductList: FC = () => {
   const {loading, data} = useQuery<ProductsData>(GET_PRODUCTS);
