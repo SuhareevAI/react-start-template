@@ -10,16 +10,15 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { tokenActions } from '../../../app/redux/token';
 import { useMutation } from '@apollo/client';
-import { SIGN_UP, SignupData } from '../../../app/lib/signupConnections';
 import { message } from 'antd';
-import { RegistrationFormValues } from '../../RegistrationForm/types/RegistrationFormTypes';
+import { SIGN_IN, SignupData } from '../../../app/lib/profileConnections';
 
 export const LoginForm = memo(() => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [signup] = useMutation<SignupData, RegistrationFormValues>(SIGN_UP, {
+  const [signin] = useMutation<SignupData, LoginFormValues>(SIGN_IN, {
     onCompleted: (data) => {
       const token = data.profile.signin.token;
       if (data && token) {
@@ -51,9 +50,8 @@ export const LoginForm = memo(() => {
   const formManager = useFormik<LoginFormValues>({
     initialValues: { email: undefined, password: undefined },
     onSubmit: (values, actions) => {
-      signup({ variables: { email: values.email, password: values.password } });
+      signin({ variables: { email: values.email, password: values.password } });
     },
-    validate,
   });
 
   const { handleSubmit, values, touched, errors, submitCount, handleBlur, handleChange } = formManager;

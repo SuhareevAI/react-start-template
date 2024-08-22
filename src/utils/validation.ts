@@ -34,7 +34,7 @@ export const isValidFileType = ({ type }: UploadFile, allowedTypes?: string) => 
     return true;
   }
   if (type) {
-    return allowedTypes.includes(type);
+    return type.includes(allowedTypes);
   }
 };
 
@@ -45,5 +45,6 @@ export const getServerErrorCode = (error: ApolloError) => {
       errText = err.extensions.code;
     });
   }
+
   return errText ?? 'INTERNAL_SERVER_ERROR';
 };

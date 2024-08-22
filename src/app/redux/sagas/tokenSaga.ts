@@ -1,5 +1,6 @@
 import { select, takeEvery, takeLatest } from 'redux-saga/effects';
 import { tokenActions, tokenSelectors } from '../token';
+import { userActions } from '../user';
 
 export function* setToken(): Generator {
   const token = (yield select(tokenSelectors.get)) as string;

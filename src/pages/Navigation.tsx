@@ -32,7 +32,7 @@ export const Navigation: FC = () => {
         {t('Navigation.AddProduct')}
       </NavLink>
       <NavLink className={[s.nav__item, s[theme]].join(' ')} to="registration">
-        Регистрация
+        {t('Navigation.Signup')}
       </NavLink>
       <Login height={25} width={25} />
     </>

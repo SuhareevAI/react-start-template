@@ -2,9 +2,12 @@ import React, { FC, memo } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../../shared/ui/Button/Button';
-import { isNotDefinedString } from '../../../utils/validation';
+import { getServerErrorCode, isNotDefinedString } from '../../../utils/validation';
 import { PasswordFormField } from '../../../shared/ui/FormField/PasswordFormField';
 import { ChangePasswordFormErrors, ChangePasswordFormValues } from '../types/ChangePasswordFormTypes';
+import { useMutation } from '@apollo/client';
+import { CHANGE_PASS, ChangePasswordData, ChangePasswordInput } from '../../../app/lib/profileConnections';
+import { message } from 'antd';
 
 export const ChangePasswordForm: FC = memo(() => {
   const { t } = useTranslation();
@@ -27,10 +30,22 @@ export const ChangePasswordForm: FC = memo(() => {
     return errors;
   };
 
+  const [changePass] = useMutation<ChangePasswordData, ChangePasswordInput>(CHANGE_PASS, {
+    onCompleted: (data) => {
+      const success = data.profile.password.change.success;
+      if (success) {
+        message.success('Success');
+      }
+    },
+    onError: (error) => {
+      message.error(t(`Errors.${getServerErrorCode(error)}`));
+    },
+  });
+
   const formManager = useFormik<ChangePasswordFormValues>({
     initialValues: { password: undefined, newPassword: undefined, repeatPassword: undefined },
     onSubmit: (values, actions) => {
-      console.log('values: ', values);
+      changePass({ variables: { input: { newPassword: values.newPassword, password: values.password } } });
       actions.resetForm();
     },
     validate,

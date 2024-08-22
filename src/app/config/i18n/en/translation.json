@@ -94,7 +94,8 @@
       },
       "Button" : {
         "title" : "Add"
-      }
+      },
+    "SuccessMessage" : "Product added successfully"
     },
     "Cart": {
       "EmptyCart" : "Cart is empty"
@@ -104,7 +105,8 @@
     "Main" : "Main",
     "Cart" : "Cart",
     "Profile" : "Profile",
-    "AddProduct" : "Add product"
+    "AddProduct" : "Add product",
+    "Signup" : "Sign up"
   },
   "Pages" : {
     "AddProduct" : {
@@ -133,5 +135,8 @@
     "DATA_BASE_ERROR": "Database server error. We automatically register all errors and will fix everything soon",
     "INTERNAL_SERVER_ERROR": "Server error. We automatically register all errors and will fix everything soon",
     "ERR_INVALID_NICKNAME": "The alias must be at least 7 characters and can contain only numbers, letters and an underscore"
+  },
+  "Messages" : {
+    "SignupSuccess" : "Success sign up"
   }
 }

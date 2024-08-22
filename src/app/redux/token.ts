@@ -3,7 +3,7 @@ import { AppState } from './store';
 
 const tokenSlice = createSlice({
   name: 'token',
-  initialState: null,
+  initialState: localStorage.getItem('token'),
   reducers: {
     generate: (_, action) => action.payload,
     clear: () => null,
