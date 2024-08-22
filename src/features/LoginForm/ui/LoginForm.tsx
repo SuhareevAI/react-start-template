@@ -10,16 +10,15 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { tokenActions } from '../../../app/redux/token';
 import { useMutation } from '@apollo/client';
-import { SIGN_UP, SignupData } from '../../../app/lib/api/profileConnections';
+import { SIGN_IN, SignupData } from '../../../app/lib/api/profileConnections';
 import { message } from 'antd';
-import { RegistrationFormValues } from '../../RegistrationForm/types/RegistrationFormTypes';
 
 export const LoginForm = memo(() => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [signup] = useMutation<SignupData, RegistrationFormValues>(SIGN_UP, {
+  const [signup] = useMutation<SignupData, LoginFormValues>(SIGN_IN, {
     onCompleted: (data) => {
       const token = data.profile.signin.token;
       if (data && token) {

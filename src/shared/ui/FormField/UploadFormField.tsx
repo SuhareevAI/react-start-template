@@ -14,12 +14,17 @@ export const Uploader: FC<UploaderProps> = ({
   errors,
   touched,
   submitCount,
+  action,
+  headers
 }) => {
   const { validateStatus, help } = getValidates(errors, touched, submitCount);
 
   return (
     <FormItem title={title} validateStatus={validateStatus} help={help}>
-      <Upload beforeUpload={beforeUpload} fileList={fileList} onChange={onChange}>
+      <Upload beforeUpload={beforeUpload} fileList={fileList} onChange={onChange}
+      action={action}
+      headers={headers}
+      >
         <Button size="small" type="button" style="secondary">
           <MdOutlineFileUpload /> Выберите фото...
         </Button>

@@ -94,10 +94,22 @@
       },
       "Button" : {
         "title" : "Add"
-      }
+      },
+      "SuccessMessage" : "Product added successfully"
     },
     "Cart": {
       "EmptyCart" : "Cart is empty"
+    },
+    "CategoryForm" : {
+      "Title" : "Category",
+      "Name" : {
+        "title" : "Name category", 
+        "placeholder" : "Name category"
+      },
+      "Button" : {
+        "title" : "Add category"
+      },
+      "SuccessMessage" : "Category added successfully"
     }
   },
   "Navigation" : {
@@ -105,8 +117,9 @@
     "Cart" : "Cart",
     "Profile" : "Profile",
     "AddProduct" : "Add product",
-    "Registration": "Sign in",
-    "Auth": "Sign up"
+    "AddCategory" : "Add category",
+    "Registration": "Sign up",
+    "Auth": "Sign in"
   },
   "Pages" : {
     "AddProduct" : {

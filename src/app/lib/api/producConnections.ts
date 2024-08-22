@@ -13,6 +13,20 @@ export type ProductGetManyInput = {
   ids: string;
 }
 
+export type ProductAddInput = {
+  input: {
+    name: string,
+    photo: string,
+    desc: string,
+    price: number,
+    categoryId: string
+  }
+}
+
+export type ProductAddData = {
+
+}
+
 export const GET_PRODUCT_BY_IDS = gql`
 query GetMany($input: ProductGetManyInput) {
   products {
@@ -28,7 +42,6 @@ query GetMany($input: ProductGetManyInput) {
   }
 }
 `
-
 export const GET_PRODUCTS = gql`
 query Query($input: ProductGetManyInput) {
     products {
@@ -57,3 +70,29 @@ query Query($input: ProductGetManyInput) {
     }
   }
 `;
+
+export const ADD_PRODUCT = gql`
+mutation Add($input: ProductAddInput!) {
+  products {
+    add(input: $input) {
+      id
+      name
+      photo
+      desc
+      createdAt
+      updatedAt
+      oldPrice
+      price
+      category {
+        id
+        name
+        photo
+        createdAt
+        updatedAt
+        commandId
+      }
+      commandId
+    }
+  }
+}
+`

@@ -36,7 +36,6 @@ const categorySlice = createSlice({
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
       state.status = 'resolve';
       state.categories = action.payload;
-
     });
     builder.addCase(fetchCategories.rejected, (state, action) => {
       state.status = 'rejected';

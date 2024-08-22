@@ -3,6 +3,7 @@ import { valueType } from 'antd/es/statistic/utils';
 import { MutableRefObject } from 'react';
 import { InputRef } from 'antd';
 import { RcFile, UploadChangeParam, UploadFile } from 'antd/es/upload';
+import { HttpRequestHeader } from 'antd/es/upload/interface';
 
 export interface FormProps<Values = unknown> {
   className?: string;
@@ -61,6 +62,8 @@ export type UploaderProps = Pick<FormProps, 'disabled' | 'autoFocusElement'> & {
   beforeUpload: (file: RcFile, FileList: RcFile[]) => void;
   fileList: UploadFile[];
   onChange: (info: UploadChangeParam<UploadFile>) => void;
+  action? : string;
+  headers?: HttpRequestHeader;
 };
 
 export type optionType = { value: string; label: string };

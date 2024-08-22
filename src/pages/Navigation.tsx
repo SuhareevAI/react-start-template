@@ -12,6 +12,7 @@ import { Login } from '../widgets/Login/ui/Login';
 import ThemeContext from '../app/lib/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { Registration } from '../pages/Registration';
+import { AddCategory } from './AddCategory';
 
 export const Navigation: FC = () => {
   const { theme } = useContext(ThemeContext);
@@ -31,6 +32,9 @@ export const Navigation: FC = () => {
       <NavLink className={[s.nav__item, s[theme]].join(' ')} to="addProduct">
         {t('Navigation.AddProduct')}
       </NavLink>
+      <NavLink className={[s.nav__item, s[theme]].join(' ')} to="addCategory">
+        {t('Navigation.AddCategory')}
+      </NavLink>
       <Login height={25} width={25} />
     </>
   );
@@ -41,15 +45,9 @@ export const Navigation: FC = () => {
         <Routes>
           <Route path="cart" element={<Cart />} />
           <Route path="" element={<Home />} />
-          <Route
-            path="account"
-            element={
-              <ProtectedRoute>
-                <Account />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="account" element={<ProtectedRoute><Account /></ProtectedRoute>}/>
           <Route path="addProduct" element={ <ProtectedRoute><AddProduct /></ProtectedRoute>}/>
+          <Route path="addCategory" element={ <ProtectedRoute><AddCategory /></ProtectedRoute>}/>
           <Route path="auth" element={<Auth />} />
           <Route path="registration" element={<Registration />} />
         </Routes>

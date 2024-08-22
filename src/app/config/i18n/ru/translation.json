@@ -94,10 +94,22 @@
       },
       "Button" : {
         "title" : "Добавить"
-      }     
+      },
+      "SuccessMessage" : "Продукт добавлен успешно"
     },
     "Cart": {
       "EmptyCart" : "Корзина пустая"
+    },
+    "CategoryForm" : {
+      "Title" : "Категории",
+      "Name" : {
+        "title" : "Наименование категории", 
+        "placeholder" : "Наименование категории"
+      },
+      "Button" : {
+        "title" : "Добавить категорию"
+      },
+      "SuccessMessage" : "Категория добавлена успешно"
     }
   },
   "Navigation" : {
@@ -105,6 +117,7 @@
     "Cart" : "Корзина",
     "Profile" : "Профиль",
     "AddProduct" : "Добавить товар",
+    "AddCategory" : "Добавить категорию",
     "Registration": "Регистрация",
     "Auth": "Войти"
   },

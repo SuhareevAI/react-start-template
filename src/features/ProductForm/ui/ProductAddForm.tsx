@@ -4,21 +4,37 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '../../../shared/ui/Button/Button';
 import { NumberFormField } from '../../../shared/ui/FormField/NumberFormField';
 import { TextFormField } from '../../../shared/ui/FormField/TextFormField';
-import { isNotDefinedString, isValidFileType } from '../../../utils/validation';
+import { getServerErrorCode, isNotDefinedString, isValidFileType } from '../../../utils/validation';
 import { ProductFormErrors, ProductFormValues } from '../types/ProductFormTypes';
 import { TextAreaFormField } from '../../../shared/ui/FormField/TextAreaFormField';
 import { Uploader } from '../../../shared/ui/FormField/UploadFormField';
-import { UploadFile } from 'antd';
+import { message, UploadFile } from 'antd';
 import { SelectFormField } from '../../../shared/ui/FormField/SelectFormField';
 import { UploadChangeParam } from 'antd/es/upload';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, AppState } from 'src/app/redux/store';
 import { fetchCategories } from 'src/app/redux/category';
+import { ADD_PRODUCT, ProductAddData, ProductAddInput } from 'src/app/lib/api/producConnections';
+import { useMutation } from '@apollo/client';
+import { uploadServerUrl } from 'src/app/constants/Api';
 
-export const ProductForm: FC = () => {
+export const ProductAddForm: FC = () => {
+  const [file, setFile] = useState(null);
   const { t } = useTranslation();
   const {categories} = useSelector((state : AppState) => state.category);
   const dispatch = useDispatch<AppDispatch>();
+  const token = useSelector<AppState, AppState['token']>((state) => state.token);
+
+
+  const [add] = useMutation<ProductAddData, ProductAddInput>(ADD_PRODUCT, {
+    onCompleted: (data) => {
+        message.info(t(`Forms.ProductForm.SuccessMessage`))
+      },
+    onError: (error) => {
+      message.error(t(`Errors.${getServerErrorCode(error)}`));
+    },
+  });
+
 
   const validate = (values: ProductFormValues) => {
     const errors = {} as ProductFormErrors;
@@ -36,7 +52,7 @@ export const ProductForm: FC = () => {
 
     if (values.photo == undefined) {
       errors.photoErrors = t(`Errors.is_required`);
-    } else if (values.photo && !isValidFileType(values.photo, 'image/png')) {
+    } else if (values.photo && !isValidFileType(values.photo, 'image')) {
       errors.photoErrors = t(`Errors.need_image_file`);
     }
 
@@ -64,7 +80,17 @@ export const ProductForm: FC = () => {
       category: undefined,
     },
     onSubmit: (values, actions) => {
-      console.log(values);
+      add({ 
+        variables: {
+          input: { 
+            name: values.name, 
+            price: values.price, 
+            desc: values.desc, 
+            categoryId : values.category, 
+            photo: file
+          }
+        }
+      })
       actions.resetForm();
     },
     validate,
@@ -77,11 +103,16 @@ export const ProductForm: FC = () => {
     return true;
   };
 
-  const onFilechange = (file: UploadChangeParam) => {
+   const onFilechange = (file: UploadChangeParam) => {
     if (file.file.status == 'removed') {
-      formManager.setFieldValue('photo', undefined);
+        formManager.setFieldValue('photo', undefined);
     }
-  };
+
+    if (file.file.status == 'done') {
+      setFile(file.file.response.url);
+    }
+ };
+
 
   return (
     <form>
@@ -151,15 +182,17 @@ export const ProductForm: FC = () => {
         options={categoryOptions}
       />
 
-      <Uploader
+       <Uploader
         beforeUpload={beforeUpload}
         onChange={onFilechange}
         submitCount={submitCount}
         errors={errors.photoErrors}
         touched={touched.photoTouched}
         title="photo"
+        action={uploadServerUrl}
+        headers={{authorization: `Bearer ${token}`}}
         fileList={values.photo != null ? [values.photo] : []}
-      />
+      /> 
 
       <Button type="submit" style="primary" size="small" onClick={handleSubmit}>
         {t(`Forms.ProductForm.Button.title`)}

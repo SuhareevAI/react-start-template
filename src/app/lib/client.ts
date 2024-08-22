@@ -11,7 +11,7 @@ const authLikn = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      autorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });

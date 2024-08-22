@@ -4,7 +4,6 @@ import { ProductModel } from '../entities/Product/Model/ProductModel';
 import s from '../app/styles/base.sass';
 import { useSelector } from 'react-redux';
 import { AppState } from '../app/redux/store';
-import { getProducts } from '../shared/api/products';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 import { GET_PRODUCT_BY_IDS, GET_PRODUCTS, ProductsData } from 'src/app/lib/api/producConnections';
@@ -29,8 +28,6 @@ export const Cart: FC = () => {
     });
   },[cartProducts, products])
   
-
-
   if (!products.length)
     return (
       <div className={s.container} style={{ padding: '10px', textAlign: 'center' }}>
@@ -38,7 +35,7 @@ export const Cart: FC = () => {
       </div>
     );
 
-  if (cartProducts)
+  if (cartProducts && cartProducts.length > 0)
   return (
     <>
       <div className={s.container} style={{ padding: '10px' }}>
@@ -58,8 +55,7 @@ export const Cart: FC = () => {
         }
 
         <Divider/>
-        {price} ₽
-        
+        {price} ₽     
       </div>
     </>
   );
