@@ -14,7 +14,7 @@ import { UploadChangeParam } from 'antd/es/upload';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, AppState } from 'src/app/redux/store';
 import { fetchCategories } from 'src/app/redux/category';
-import { ADD_PRODUCT, ProductAddData, ProductAddInput } from 'src/app/lib/api/producConnections';
+import { ADD_PRODUCT, GET_PRODUCT_BY_IDS, GET_PRODUCTS, ProductAddData, ProductAddInput } from 'src/app/lib/api/producConnections';
 import { useMutation } from '@apollo/client';
 import { uploadServerUrl } from 'src/app/constants/Api';
 
@@ -24,15 +24,14 @@ export const ProductAddForm: FC = () => {
   const {categories} = useSelector((state : AppState) => state.category);
   const dispatch = useDispatch<AppDispatch>();
   const token = useSelector<AppState, AppState['token']>((state) => state.token);
-
-
   const [add] = useMutation<ProductAddData, ProductAddInput>(ADD_PRODUCT, {
-    onCompleted: (data) => {
+    onCompleted: () => {
         message.info(t(`Forms.ProductForm.SuccessMessage`))
       },
     onError: (error) => {
       message.error(t(`Errors.${getServerErrorCode(error)}`));
     },
+    refetchQueries: [{query: GET_PRODUCTS}, {query: GET_PRODUCT_BY_IDS}]
   });
 
 

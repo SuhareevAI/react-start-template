@@ -16,13 +16,27 @@ export type CategoryAddInput = {
 }
 
 export type CategoryAddData = {
-  data: {
-    categories: {
-      add: {
-        id: string,
-        name: string,
-        commandId: string
-      }
+  categories: {
+    add: {
+      id: string,
+      name: string,
+      commandId: string
+    }
+  }
+}
+
+export type CategoryUpdateInput = {
+    patchId: string,
+    input: {
+      name: string
+    }
+}
+
+export type CategoryUpdateData = {
+  categories: {
+    patch: {
+      id: string,
+      name: string
     }
   }
 }
@@ -53,3 +67,14 @@ mutation Add($input: CategoryAddInput!) {
   }
 }
 `;
+
+export const PUT_CATEGORY = gql`
+mutation Put($patchId: ID!, $input: CategoryUpdateInput!) {
+  categories {
+    patch(id: $patchId, input: $input) {
+      id
+      name
+    }
+  }
+}
+`

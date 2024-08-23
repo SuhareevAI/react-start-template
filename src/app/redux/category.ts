@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Category } from 'src/entities/Category/Model/Category';
 import client from '../lib/client';
 import { GET_CATEGORIES } from '../lib/api/categoriesConnections';
@@ -7,6 +7,7 @@ export const fetchCategories = createAsyncThunk(
   'category/fetchCategories',
     async () => {
         const response = await client.query({query: GET_CATEGORIES});
+        console.log(response.data);
         return response.data.categories.getMany.data;
     }
 );
@@ -25,9 +26,19 @@ const categorySlice = createSlice({
     status: undefined,
   } as initialStateType,
   reducers: {
-    set: (state, action) => {
-      state.categories = action.payload
+    add: (state, action : PayloadAction<Category>) => {
+      console.log(action.payload)
+      state.categories.push(action.payload)
     },
+    update : (state, action : PayloadAction<Category>) => {
+      console.log(action.payload)
+      state.categories.map(m => {
+        if (m.id == action.payload.id) {
+          m.name = action.payload.name;
+          return;
+        }
+      })
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCategories.pending, (state, action) => {
