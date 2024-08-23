@@ -1,49 +1,49 @@
 import { gql } from '@apollo/client';
-import { ProductModel } from 'src/entities/Product/Model/ProductModel';
+import { ProductModel } from '../../../../src/entities/Product/Model/ProductModel';
 
 export type ProductsData = {
-    products : {
-        getMany : {
-            data : ProductModel[]
-        }
-    }
-}
+  products: {
+    getMany: {
+      data: ProductModel[];
+    };
+  };
+};
 
 export type ProductGetManyInput = {
   ids: string;
-}
+};
 
 export type ProductAddInput = {
   input: {
-    name: string,
-    photo: string,
-    desc: string,
-    price: number,
-    categoryId: string
-  }
-}
+    name: string;
+    photo: string;
+    desc: string;
+    price: number;
+    categoryId: string;
+  };
+};
 
 export type ProductAddData = {
-
-}
+  id: string;
+};
 
 export const GET_PRODUCT_BY_IDS = gql`
-query GetMany($input: ProductGetManyInput) {
-  products {
-    getMany(input: $input) {
-      data {
-        id
-        name
-        photo
-        price
-        desc
+  query GetMany($input: ProductGetManyInput) {
+    products {
+      getMany(input: $input) {
+        data {
+          id
+          name
+          photo
+          price
+          desc
+        }
       }
     }
   }
-}
-`
+`;
 export const GET_PRODUCTS = gql`
-query Query($input: ProductGetManyInput) {
+  query Query($input: ProductGetManyInput) {
     products {
       getMany(input: $input) {
         data {
@@ -72,27 +72,27 @@ query Query($input: ProductGetManyInput) {
 `;
 
 export const ADD_PRODUCT = gql`
-mutation Add($input: ProductAddInput!) {
-  products {
-    add(input: $input) {
-      id
-      name
-      photo
-      desc
-      createdAt
-      updatedAt
-      oldPrice
-      price
-      category {
+  mutation Add($input: ProductAddInput!) {
+    products {
+      add(input: $input) {
         id
         name
         photo
+        desc
         createdAt
         updatedAt
+        oldPrice
+        price
+        category {
+          id
+          name
+          photo
+          createdAt
+          updatedAt
+          commandId
+        }
         commandId
       }
-      commandId
     }
   }
-}
-`
+`;

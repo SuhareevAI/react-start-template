@@ -34,7 +34,6 @@ export const isValidFileType = ({ type }: UploadFile, allowedTypes?: string) => 
     return true;
   }
   if (type) {
-
     return type.includes(allowedTypes);
   }
 };

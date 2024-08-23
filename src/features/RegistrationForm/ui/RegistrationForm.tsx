@@ -9,8 +9,8 @@ import { fetchUser } from '../../../app/redux/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, AppState } from '../../../app/redux/store';
 import { message } from 'antd';
-import { getServerErrorCode, isNotDefinedString, isNotValidEmail } from 'src/utils/validation';
-import { commandId } from 'src/app/constants/Api';
+import { getServerErrorCode, isNotDefinedString, isNotValidEmail } from '../../../utils/validation';
+import { commandId } from '../../../app/constants/Api';
 
 export const RegistrationForm = memo(() => {
   const { t } = useTranslation();
@@ -20,7 +20,7 @@ export const RegistrationForm = memo(() => {
   const formManager = useFormik<RegistrationFormValues>({
     initialValues: { email: undefined, password: undefined },
     onSubmit: (values, actions) => {
-      dispatch(fetchUser({email: values.email, password: values.password, commandId: commandId}));
+      dispatch(fetchUser({ email: values.email, password: values.password, commandId: commandId }));
       actions.resetForm();
     },
     validate: (values) => {
@@ -28,11 +28,11 @@ export const RegistrationForm = memo(() => {
       if (isNotDefinedString(values.email)) {
         errors.email = t(`Errors.is_required`);
       }
-  
+
       if (!isNotDefinedString(values.email) && !isNotValidEmail(values.email)) {
         errors.email = t(`Errors.is_not_valid_email`);
       }
-  
+
       if (isNotDefinedString(values.password)) {
         errors.password = t(`Errors.is_required`);
       }
@@ -42,7 +42,7 @@ export const RegistrationForm = memo(() => {
 
   useEffect(() => {
     if (error) {
-      message.error(t(`Errors.${(error)}`));
+      message.error(t(`Errors.${error}`));
     }
   }, [error]);
 

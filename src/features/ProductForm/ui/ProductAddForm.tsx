@@ -12,28 +12,33 @@ import { message, UploadFile } from 'antd';
 import { SelectFormField } from '../../../shared/ui/FormField/SelectFormField';
 import { UploadChangeParam } from 'antd/es/upload';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, AppState } from 'src/app/redux/store';
-import { fetchCategories } from 'src/app/redux/category';
-import { ADD_PRODUCT, GET_PRODUCT_BY_IDS, GET_PRODUCTS, ProductAddData, ProductAddInput } from 'src/app/lib/api/producConnections';
+import { AppDispatch, AppState } from '../../../app/redux/store';
+import { fetchCategories } from '../../../app/redux/category';
+import {
+  ADD_PRODUCT,
+  GET_PRODUCT_BY_IDS,
+  GET_PRODUCTS,
+  ProductAddData,
+  ProductAddInput,
+} from '../../../app/lib/api/producConnections';
 import { useMutation } from '@apollo/client';
-import { uploadServerUrl } from 'src/app/constants/Api';
+import { uploadServerUrl } from '../../../app/constants/Api';
 
 export const ProductAddForm: FC = () => {
   const [file, setFile] = useState(null);
   const { t } = useTranslation();
-  const {categories} = useSelector((state : AppState) => state.category);
+  const { categories } = useSelector((state: AppState) => state.category);
   const dispatch = useDispatch<AppDispatch>();
   const token = useSelector<AppState, AppState['token']>((state) => state.token);
   const [add] = useMutation<ProductAddData, ProductAddInput>(ADD_PRODUCT, {
     onCompleted: () => {
-        message.info(t(`Forms.ProductForm.SuccessMessage`))
-      },
+      message.info(t(`Forms.ProductForm.SuccessMessage`));
+    },
     onError: (error) => {
       message.error(t(`Errors.${getServerErrorCode(error)}`));
     },
-    refetchQueries: [{query: GET_PRODUCTS}, {query: GET_PRODUCT_BY_IDS}]
+    refetchQueries: [{ query: GET_PRODUCTS }, { query: GET_PRODUCT_BY_IDS }],
   });
-
 
   const validate = (values: ProductFormValues) => {
     const errors = {} as ProductFormErrors;
@@ -58,14 +63,14 @@ export const ProductAddForm: FC = () => {
     return errors;
   };
 
-  const categoryOptions = categories.map(category => ({
+  const categoryOptions = categories.map((category) => ({
     value: category.id,
-    label: category.name
+    label: category.name,
   }));
 
   useEffect(() => {
-    dispatch(fetchCategories())
-  }, [dispatch])
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   const formManager = useFormik<ProductFormValues>({
     initialValues: {
@@ -79,17 +84,17 @@ export const ProductAddForm: FC = () => {
       category: undefined,
     },
     onSubmit: (values, actions) => {
-      add({ 
+      add({
         variables: {
-          input: { 
-            name: values.name, 
-            price: values.price, 
-            desc: values.desc, 
-            categoryId : values.category, 
-            photo: file
-          }
-        }
-      })
+          input: {
+            name: values.name,
+            price: values.price,
+            desc: values.desc,
+            categoryId: values.category,
+            photo: file,
+          },
+        },
+      });
       actions.resetForm();
     },
     validate,
@@ -102,16 +107,15 @@ export const ProductAddForm: FC = () => {
     return true;
   };
 
-   const onFilechange = (file: UploadChangeParam) => {
+  const onFilechange = (file: UploadChangeParam) => {
     if (file.file.status == 'removed') {
-        formManager.setFieldValue('photo', undefined);
+      formManager.setFieldValue('photo', undefined);
     }
 
     if (file.file.status == 'done') {
       setFile(file.file.response.url);
     }
- };
-
+  };
 
   return (
     <form>
@@ -181,7 +185,7 @@ export const ProductAddForm: FC = () => {
         options={categoryOptions}
       />
 
-       <Uploader
+      <Uploader
         beforeUpload={beforeUpload}
         onChange={onFilechange}
         submitCount={submitCount}
@@ -189,9 +193,9 @@ export const ProductAddForm: FC = () => {
         touched={touched.photoTouched}
         title="photo"
         action={uploadServerUrl}
-        headers={{authorization: `Bearer ${token}`}}
+        headers={{ authorization: `Bearer ${token}` }}
         fileList={values.photo != null ? [values.photo] : []}
-      /> 
+      />
 
       <Button type="submit" style="primary" size="small" onClick={handleSubmit}>
         {t(`Forms.ProductForm.Button.title`)}

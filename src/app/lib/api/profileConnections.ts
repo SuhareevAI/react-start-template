@@ -9,16 +9,16 @@ export interface SignupData {
 }
 
 export interface ProfileData {
-  id : string,
-  name : string,
-  email: string,
-  signUpDate: string,
-  commandId: string,
+  id: string;
+  name: string;
+  email: string;
+  signUpDate: string;
+  commandId: string;
 }
 
 export interface SigninData {
-  token : string,
-  profile : ProfileData
+  token: string;
+  profile: ProfileData;
 }
 
 export const SIGN_UP = gql`

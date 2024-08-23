@@ -62,7 +62,7 @@ export type UploaderProps = Pick<FormProps, 'disabled' | 'autoFocusElement'> & {
   beforeUpload: (file: RcFile, FileList: RcFile[]) => void;
   fileList: UploadFile[];
   onChange: (info: UploadChangeParam<UploadFile>) => void;
-  action? : string;
+  action?: string;
   headers?: HttpRequestHeader;
 };
 

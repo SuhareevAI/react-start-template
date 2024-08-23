@@ -3,8 +3,8 @@ import { AppState } from './store';
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: { 
-    products: localStorage.getItem('cart') ? (JSON.parse(localStorage.getItem('cart')) as []) : [] 
+  initialState: {
+    products: localStorage.getItem('cart') ? (JSON.parse(localStorage.getItem('cart')) as []) : [],
   },
   reducers: {
     add: (state, { payload: productId }) => {

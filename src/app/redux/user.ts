@@ -5,12 +5,13 @@ import client from '../lib/client';
 
 export const fetchUser = createAsyncThunk(
   'user/fetchUser',
-  async (credentials: {email: string, password: string, commandId: string}) => {
+  async (credentials: { email: string; password: string; commandId: string }) => {
     const response = await client.mutate({
-            mutation: SIGN_UP,
-            variables: credentials});
-        return response.data;
-    }
+      mutation: SIGN_UP,
+      variables: credentials,
+    });
+    return response.data;
+  }
 );
 
 export type Credential = {

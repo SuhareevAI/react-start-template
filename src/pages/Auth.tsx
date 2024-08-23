@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export const Auth: FC = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className={s.container} style={{ padding: '10px' }}>
-      <LoginForm/>
+      <LoginForm />
       <Link to="/registration">{t('Navigation.Registration')}</Link>
     </div>
   );

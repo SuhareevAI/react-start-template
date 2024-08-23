@@ -24,7 +24,7 @@ export class ProductModel extends ShortProductInfoModel {
   oldPrice?: number;
   price: number;
   category: Category;
-  commandId : string;
+  commandId: string;
 }
 
 export class CartProductModel {

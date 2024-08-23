@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export const Registration = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className={s.container} style={{ padding: '10px' }}>
       <RegistrationForm />

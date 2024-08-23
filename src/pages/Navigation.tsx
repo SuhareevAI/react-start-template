@@ -45,9 +45,30 @@ export const Navigation: FC = () => {
         <Routes>
           <Route path="cart" element={<Cart />} />
           <Route path="" element={<Home />} />
-          <Route path="account" element={<ProtectedRoute><Account /></ProtectedRoute>}/>
-          <Route path="addProduct" element={ <ProtectedRoute><AddProduct /></ProtectedRoute>}/>
-          <Route path="addCategory" element={ <ProtectedRoute><AddCategory /></ProtectedRoute>}/>
+          <Route
+            path="account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="addProduct"
+            element={
+              <ProtectedRoute>
+                <AddProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="addCategory"
+            element={
+              <ProtectedRoute>
+                <AddCategory />
+              </ProtectedRoute>
+            }
+          />
           <Route path="auth" element={<Auth />} />
           <Route path="registration" element={<Registration />} />
         </Routes>

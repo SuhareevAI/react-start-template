@@ -14,7 +14,7 @@ export const store = configureStore({
     cart,
     user,
     program,
-    category
+    category,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
 });
